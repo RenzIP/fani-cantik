@@ -51,12 +51,8 @@ if ($result) {
                     <a class="btn btn-secondary" href="auth/login.php">Login Sistem</a>
                 </div>
             </div>
-            <div class="hero-visual" aria-hidden="true">
-                <div class="plate-card">
-                    <div class="rice-wrap"></div>
-                    <div class="stock-note note-one">Pesanan masuk</div>
-                    <div class="stock-note note-two">Stok gudang terpantau</div>
-                </div>
+            <div class="hero-visual">
+                <img class="hero-image" src="assets/images/nasibakar.png" alt="Nasi bakar">
             </div>
         </section>
 
