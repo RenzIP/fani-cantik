@@ -1,0 +1,225 @@
+:root {
+    --primary: #2E7D32;
+    --primary-dark: #1B5E20;
+    --secondary: #F5F5F5;
+    --accent: #FFC107;
+    --danger: #EF4444;
+    --text: #17211A;
+    --muted: #667085;
+    --white: #FFFFFF;
+    --shadow: 0 24px 60px rgba(22, 39, 24, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+    background: var(--secondary);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(320px, 520px) 1fr;
+}
+
+.login-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px clamp(24px, 7vw, 72px);
+    background: var(--white);
+}
+
+.back-link {
+    position: absolute;
+    top: 28px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.brand-mark {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 800;
+}
+
+.login-heading h1 {
+    margin: 18px 0 8px;
+    font-size: 2.4rem;
+    line-height: 1.1;
+}
+
+.login-heading p,
+.login-aside p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.login-form {
+    margin-top: 28px;
+}
+
+.login-form label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: 700;
+}
+
+.login-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 14px;
+    border: 1px solid #D7E5D9;
+    border-radius: 12px;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.12);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 82px;
+}
+
+.password-field button {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    min-height: 32px;
+    border: 0;
+    border-radius: 10px;
+    padding: 0 12px;
+    background: #E9F5EC;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.remember-row {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.remember-row input {
+    width: 18px;
+    height: 18px;
+    min-height: auto;
+}
+
+.login-button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 24px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--primary);
+    color: var(--white);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.22);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-aside {
+    display: grid;
+    place-items: center;
+    padding: 48px;
+    background:
+        linear-gradient(135deg, rgba(46, 125, 50, 0.92), rgba(27, 94, 32, 0.92)),
+        linear-gradient(45deg, #F3D27C, #FFFFFF);
+    color: var(--white);
+}
+
+.login-aside > div {
+    max-width: 540px;
+}
+
+.login-aside h2 {
+    margin: 0;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 1.08;
+}
+
+.login-aside p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.eyebrow {
+    color: var(--accent) !important;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.alert {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.alert-danger {
+    color: #7F1D1D;
+    background: #FEE2E2;
+}
+
+.alert-success {
+    color: #14532D;
+    background: #DCFCE7;
+}
+
+.error-message {
+    display: block;
+    min-height: 18px;
+    margin-top: 4px;
+    color: var(--danger);
+    font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .login-aside {
+        display: none;
+    }
+
+    .login-panel {
+        min-height: 100vh;
+    }
+}
