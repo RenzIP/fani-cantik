@@ -24,7 +24,7 @@ if ($result) {
         <nav class="landing-nav">
             <a class="brand" href="#home">
                 <span class="brand-mark">NB</span>
-                <span>Inventaris Nasi Bakar</span>
+                <span>Nasi Bakar</span>
             </a>
             <button class="nav-toggle" type="button" data-nav-toggle aria-label="Buka menu">
                 <span></span><span></span><span></span>
@@ -41,42 +41,42 @@ if ($result) {
     <main>
         <section class="hero-section" id="home">
             <div class="hero-content">
-                <p class="eyebrow">Manajemen stok untuk dapur yang rapi</p>
-                <h1>Sistem Inventaris Nasi Bakar</h1>
+                <p class="eyebrow">Sistem Operasional Nasi Bakar</p>
+                <h1>Inventaris & Pemesanan Nasi Bakar</h1>
                 <p class="hero-description">
-                    Kelola bahan baku, menu, supplier, dan arus stok harian dalam satu sistem sederhana yang cepat digunakan oleh admin usaha.
+                    Kelola kasir, pesanan dapur, stok gudang, supplier, permintaan restok, dan laporan usaha dalam satu sistem operasional yang saling terhubung.
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#produk">Lihat Produk</a>
-                    <a class="btn btn-secondary" href="auth/login.php">Login Admin</a>
+                    <a class="btn btn-secondary" href="auth/login.php">Login Sistem</a>
                 </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
                 <div class="plate-card">
                     <div class="rice-wrap"></div>
-                    <div class="stock-note note-one">Beras +25 kg</div>
-                    <div class="stock-note note-two">Daun pisang menipis</div>
+                    <div class="stock-note note-one">Pesanan masuk</div>
+                    <div class="stock-note note-two">Stok gudang terpantau</div>
                 </div>
             </div>
         </section>
 
         <section class="section" id="tentang">
             <div class="section-heading">
-                <p class="eyebrow">Tentang Usaha</p>
-                <h2>Dapur nasi bakar butuh stok yang selalu terpantau.</h2>
+                <p class="eyebrow">Tentang Sistem</p>
+                <h2>Alur usaha dari kasir sampai gudang</h2>
             </div>
             <div class="about-grid">
                 <article>
-                    <h3>Bahan baku terkendali</h3>
-                    <p>Admin dapat memantau stok beras, ayam, ikan, daun pisang, dan bumbu utama sebelum produksi dimulai.</p>
+                    <h3>Kasir & pemesanan</h3>
+                    <p>Kasir mencatat pesanan pelanggan, memilih menu, menghitung total pembayaran, dan mengirim antrian otomatis ke dapur.</p>
                 </article>
                 <article>
-                    <h3>Supplier tercatat</h3>
-                    <p>Data pemasok bahan disimpan rapi sehingga pembelian ulang bisa dilakukan lebih cepat.</p>
+                    <h3>Dapur & produksi</h3>
+                    <p>Dapur memantau pesanan masuk, mengubah status pengerjaan, mencatat bahan terpakai, dan membuat permintaan restok saat stok menipis.</p>
                 </article>
                 <article>
-                    <h3>Transaksi jelas</h3>
-                    <p>Setiap stok masuk dan keluar tercatat dengan tanggal, jumlah, dan keterangan penggunaan.</p>
+                    <h3>Gudang & laporan</h3>
+                    <p>Gudang mengelola bahan baku, supplier, stok masuk, persetujuan restok, serta laporan transaksi dan pergerakan stok.</p>
                 </article>
             </div>
         </section>
@@ -105,7 +105,7 @@ if ($result) {
                     $fallbackMenus = [
                         ['Nasi Bakar Ayam Suwir', 'Ayam suwir pedas dengan aroma daun pisang.', 18000],
                         ['Nasi Bakar Cumi', 'Cumi berbumbu gurih pedas untuk menu favorit.', 22000],
-                        ['Nasi Bakar Teri', 'Teri medan, kemangi, dan sambal khas dapur.', 17000],
+                        ['Nasi Bakar Teri', 'Teri medan, kemangi, dan sambal khas usaha.', 17000],
                     ];
                     ?>
                     <?php foreach ($fallbackMenus as $menu): ?>
@@ -124,7 +124,7 @@ if ($result) {
     </main>
 
     <footer class="landing-footer">
-        <p>&copy; 2026 Inventaris Nasi Bakar. Sistem stok sederhana untuk operasional dapur.</p>
+        <p>&copy; 2026 Inventaris Nasi Bakar. Sistem kasir, dapur, gudang, stok, dan laporan usaha.</p>
     </footer>
 
     <script src="assets/js/app.js"></script>
