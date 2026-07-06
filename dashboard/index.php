@@ -116,7 +116,7 @@ include __DIR__ . '/../includes/header.php';
         <a class="btn btn-primary" href="bahan/form.php">Tambah Bahan</a>
     </div>
     <div class="table-wrap">
-        <table>
+        <table class="table-fit">
             <thead>
                 <tr>
                     <th>Nama Bahan</th>

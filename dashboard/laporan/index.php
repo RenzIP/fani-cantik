@@ -87,7 +87,7 @@ include __DIR__ . '/../../includes/header.php';
 <section class="panel">
     <div class="panel-header"><h2>Bahan Menipis</h2></div>
     <div class="table-wrap">
-        <table>
+        <table class="table-fit">
             <thead><tr><th>Bahan</th><th>Stok</th></tr></thead>
             <tbody>
                 <?php foreach ($stokMenipis as $row): ?>
@@ -103,7 +103,7 @@ include __DIR__ . '/../../includes/header.php';
     <div class="panel">
         <div class="panel-header"><h2>Stok Masuk Terbaru</h2></div>
         <div class="table-wrap">
-            <table>
+            <table class="table-fit">
                 <thead><tr><th>Tanggal</th><th>Bahan</th><th>Jumlah</th></tr></thead>
                 <tbody>
                     <?php foreach ($masuk as $row): ?>
@@ -116,7 +116,7 @@ include __DIR__ . '/../../includes/header.php';
     <div class="panel">
         <div class="panel-header"><h2>Stok Keluar Terbaru</h2></div>
         <div class="table-wrap">
-            <table>
+            <table class="table-fit">
                 <thead><tr><th>Tanggal</th><th>Bahan</th><th>Jumlah</th></tr></thead>
                 <tbody>
                     <?php foreach ($keluar as $row): ?>

@@ -325,6 +325,10 @@ table {
     min-width: 720px;
 }
 
+table.table-fit {
+    min-width: 100%;
+}
+
 thead th {
     position: sticky;
     top: 0;
@@ -699,6 +703,11 @@ td small {
     .form-grid {
         grid-template-columns: 1fr;
     }
+
+    th,
+    td {
+        padding: 12px 10px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -743,6 +752,11 @@ td small {
 
     .ticket-head {
         flex-direction: column;
+    }
+
+    th,
+    td {
+        padding: 10px 8px;
     }
 }
 

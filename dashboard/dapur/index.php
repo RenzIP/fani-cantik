@@ -103,7 +103,7 @@ include __DIR__ . '/../../includes/header.php';
         </div>
     </div>
     <div class="table-wrap">
-        <table>
+        <table class="table-fit">
             <thead>
                 <tr>
                     <th>Kode</th>
