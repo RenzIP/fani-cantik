@@ -18,7 +18,7 @@ $roleLabel = current_role() ?: 'admin';
     <?php if (!empty($autoRefreshSeconds)): ?>
         <meta http-equiv="refresh" content="<?= (int) $autoRefreshSeconds; ?>">
     <?php endif; ?>
-    <link rel="stylesheet" href="<?= e($basePath); ?>assets/css/dashboard.css">
+    <link rel="stylesheet" href="<?= e($basePath); ?>assets/css/dashboard.css?v=<?= filemtime(__DIR__ . '/../assets/css/dashboard.css'); ?>">
 </head>
 <body>
 <div class="app-shell">
