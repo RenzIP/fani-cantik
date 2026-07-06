@@ -23,6 +23,7 @@ body {
     font-family: "Poppins", sans-serif;
     color: var(--text);
     background: var(--white);
+    overflow-x: hidden;
 }
 
 a {
@@ -55,6 +56,11 @@ a {
     align-items: center;
     gap: 12px;
     font-weight: 800;
+    min-width: 0;
+}
+
+.brand span:last-child {
+    overflow-wrap: anywhere;
 }
 
 .brand-mark {
@@ -110,10 +116,10 @@ a {
 
 .hero-section {
     width: min(1180px, calc(100% - 32px));
-    min-height: calc(100vh - 76px);
+    min-height: calc(100svh - 76px);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.04fr 0.96fr;
+    grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
     align-items: center;
     gap: 48px;
     padding: 48px 0 84px;
@@ -130,9 +136,10 @@ a {
 .hero-content h1 {
     margin: 0;
     max-width: 680px;
-    font-size: clamp(2.4rem, 6vw, 5.4rem);
+    font-size: 5rem;
     line-height: 1.02;
     letter-spacing: 0;
+    overflow-wrap: anywhere;
 }
 
 .hero-description {
@@ -141,6 +148,7 @@ a {
     color: var(--muted);
     font-size: 1.05rem;
     line-height: 1.8;
+    overflow-wrap: anywhere;
 }
 
 .hero-actions {
@@ -160,6 +168,8 @@ a {
     border: 1px solid transparent;
     font-weight: 700;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    text-align: center;
+    white-space: normal;
 }
 
 .btn:hover {
@@ -183,13 +193,15 @@ a {
 }
 
 .hero-visual {
-    min-height: 460px;
+    min-height: 420px;
     display: grid;
     place-items: center;
+    min-width: 0;
 }
 
 .hero-image {
     width: min(430px, 100%);
+    max-height: min(520px, 68vh);
     height: auto;
     display: block;
     border-radius: 28px;
@@ -216,14 +228,15 @@ a {
 
 .section-heading h2 {
     margin: 0;
-    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-size: 3rem;
     line-height: 1.15;
+    overflow-wrap: anywhere;
 }
 
 .about-grid,
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 22px;
 }
 
@@ -256,7 +269,7 @@ a {
 
 .menu-card {
     display: grid;
-    grid-template-columns: 82px 1fr;
+    grid-template-columns: 82px minmax(0, 1fr);
     gap: 18px;
 }
 
@@ -288,10 +301,21 @@ a {
     .hero-section {
         grid-template-columns: 1fr;
         min-height: auto;
+        gap: 28px;
+        padding: 42px 0 70px;
     }
 
     .hero-visual {
-        min-height: 360px;
+        min-height: auto;
+        order: -1;
+    }
+
+    .hero-content h1 {
+        font-size: 3.6rem;
+    }
+
+    .section-heading h2 {
+        font-size: 2.6rem;
     }
 
     .about-grid,
@@ -301,8 +325,14 @@ a {
 }
 
 @media (max-width: 768px) {
+    .landing-nav {
+        width: min(100% - 24px, 1180px);
+        gap: 14px;
+    }
+
     .nav-toggle {
         display: block;
+        flex: 0 0 auto;
     }
 
     .nav-links {
@@ -326,6 +356,19 @@ a {
     .hero-content h1 {
         font-size: 2.8rem;
     }
+
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .section {
+        padding: 64px 0;
+    }
+
+    .section-heading h2 {
+        font-size: 2.25rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -334,13 +377,31 @@ a {
         width: min(100% - 24px, 1180px);
     }
 
+    .hero-section {
+        padding: 28px 0 52px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.35rem;
+        line-height: 1.08;
+    }
+
+    .hero-actions {
+        display: grid;
+        gap: 10px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
     .about-grid,
     .menu-grid {
         grid-template-columns: 1fr;
     }
 
     .menu-card {
-        grid-template-columns: 70px 1fr;
+        grid-template-columns: 70px minmax(0, 1fr);
         padding: 18px;
     }
 
@@ -351,5 +412,30 @@ a {
 
     .hero-image {
         width: min(340px, 100%);
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .brand {
+        gap: 8px;
+        font-size: 0.92rem;
+    }
+
+    .brand-mark {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .section-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .menu-card {
+        grid-template-columns: 1fr;
     }
 }
