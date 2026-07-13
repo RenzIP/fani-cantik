@@ -87,7 +87,11 @@ if ($result) {
                     <?php foreach ($menus as $menu): ?>
                         <article class="menu-card">
                             <div class="menu-image">
-                                <span><?= e(substr($menu['nama_menu'], 0, 2)); ?></span>
+                                <?php if (!empty($menu['gambar']) && file_exists(__DIR__ . '/assets/images/' . $menu['gambar'])): ?>
+                                    <img src="assets/images/<?= e($menu['gambar']); ?>" alt="<?= e($menu['nama_menu']); ?>" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <?php else: ?>
+                                    <span><?= e(substr($menu['nama_menu'], 0, 2)); ?></span>
+                                <?php endif; ?>
                             </div>
                             <div>
                                 <h3><?= e($menu['nama_menu']); ?></h3>

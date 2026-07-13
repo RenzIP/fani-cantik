@@ -23,8 +23,9 @@ include __DIR__ . '/../../includes/header.php';
             <p>Isi detail menu nasi bakar.</p>
         </div>
     </div>
-    <form class="data-form" action="simpan.php" method="post" data-validate>
+    <form class="data-form" action="simpan.php" method="post" enctype="multipart/form-data" data-validate>
         <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="existing_gambar" value="<?= e($data['gambar']); ?>">
         <div class="form-grid">
             <div class="form-group">
                 <label for="nama_menu">Nama Menu</label>
@@ -42,8 +43,18 @@ include __DIR__ . '/../../includes/header.php';
                 <small class="error-message"></small>
             </div>
             <div class="form-group full">
-                <label for="gambar">Nama File Gambar</label>
-                <input id="gambar" name="gambar" value="<?= e($data['gambar']); ?>" placeholder="nasi-bakar-ayam.jpg">
+                <label for="gambar">Gambar Menu</label>
+                <?php if (!empty($data['gambar']) && file_exists(__DIR__ . '/../../assets/images/' . $data['gambar'])): ?>
+                    <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                        <img src="../../assets/images/<?= e($data['gambar']); ?>" alt="Current Image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+                        <div>
+                            <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">File saat ini:</p>
+                            <strong style="font-size: 0.9rem; color: var(--primary-dark); word-break: break-all;"><?= e($data['gambar']); ?></strong>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <input id="gambar" type="file" name="gambar" accept="image/*">
+                <small style="color: var(--muted); font-size: 0.82rem; display: block; margin-top: 4px;">Format: JPG, JPEG, PNG, WEBP. Max: 2MB. Kosongkan jika tidak ingin mengubah gambar.</small>
             </div>
         </div>
         <div class="form-actions">

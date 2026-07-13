@@ -1,0 +1,568 @@
+﻿DOKUMENTASI
+DESKRIPSI PENGEMBANGAN PERANGKAT LUNAK
+Sistem Informasi Dapur dan Restock Warung Nasi Bakar
+
+
+
+
+
+
+untuk:
+Dini Hamidin, S.Si., MBA., MT.
+Mata Kuliah Rekayasa Perangkat Lunak
+
+
+Dipersiapkan oleh:
+
+Al Fanisa Basri
+Feby Mutiara
+Ratu Sinatria Ragib
+
+
+
+
+SCHOOL OF INFORMATION TECHNOLOGY
+UNIVERSITAS LOGISTIK DAN BISNIS INTERNASIONAL
+2026
+Program Studi D4 Teknik Informatika
+Universitas Logistik dan Bisnis InternasionalNomor DokumenHalamanDPPL-DR-011 / -RevisiTanggalA15/06/2026
+DAFTAR PERUBAHAN
+
+RevisiDeskripsiAInitial Draft - DPPL Sistem Informasi Dapur dan Restock Warung Nasi BakarBCDEFG
+INDEX TGL-ABCDEFGDitulis olehAl Fanisa Basri, Feby Mutiara, Ratu Sinatria RagibDiperiksa olehDisetujui oleh
+Daftar Halaman Perubahan
+HalamanRevisiHalamanRevisi
+
+DAFTAR ISI
+DAFTAR PERUBAHAN	i
+Daftar Halaman Perubahan	i
+1. Pendahuluan	1
+1.1 Tujuan Penulisan Dokumen	1
+1.2 Lingkup Masalah	1
+1.3 Definisi, Istilah dan Singkatan	1
+1.4 Referensi	1
+1.5 Deskripsi Umum Dokumen (Ikhtisar)	1
+2. Deskripsi Umum Perangkat Lunak	1
+2.1 Deskripsi Umum Desain	1
+2.2 Matriks Penelusuran Requirements	1
+2.2.1 Antarmuka Sistem	1
+2.2.2 Antarmuka Pengguna	1
+2.2.3 Antarmuka Hardware	1
+2.2.4 Antarmuka Software	1
+2.2.5 Antarmuka Komunikasi	1
+2.2.6 Batasan Memory	1
+2.2.7 Operasi Pengguna	1
+2.3 Fungsi Produk	1
+2.4 Karakteristik Pengguna	1
+2.5 Batasan	1
+2.6 Lingkungan Operasi	1
+3. Deskripsi Umum Kebutuhan	1
+3.1 Kebutuhan Antarmuka Eksternal	1
+3.1.1 Antarmuka Pemakai	1
+3.1.2 Antarmuka Perangkat Keras	1
+3.1.3 Antarmuka Perangkat Lunak	1
+3.1.4 Antarmuka Komunikasi	1
+3.2 Deskripsi Fungsional	1
+3.2.1 Context Diagram	1
+3.2.1.1 DFD Level 1	1
+3.3 Data Requirement	1
+3.3.1 E-R Diagram	1
+3.4 Non Functional Requirement	1
+3.5 Batasan Perancangan	1
+3.6 Kerunutan (Traceability)	1
+3.6.1 Data Store vs E-R	1
+3.7 Ringkasan Kebutuhan	1
+3.7.1 Functional Requirement Summary	1
+3.7.2 Non Functional Requirement Summary	1
+4. Deskripsi Perancangan Global	1
+4.1 Rancangan Lingkungan Implementasi	1
+4.2 Deskripsi Data	1
+4.2.1 Definisi Domain/Type	1
+4.2.2 Conceptual Data Model	1
+4.2.3 Physical Data Model	1
+4.2.4 Daftar Tabel Aplikasi	1
+4.3 Dekomposisi Fungsional Modul	1
+5. Deskripsi Perancangan Rinci	1
+5.1 Deskripsi Rinci Tabel	1
+5.1.1 Tabel t_pengguna	1
+5.1.2 Tabel t_bahan_baku	1
+5.1.3 Tabel t_pesanan	1
+5.1.4 Tabel t_produksi	1
+5.1.5 Tabel t_restock	1
+5.1.6 Tabel t_produksi_bahan	1
+5.2 Deskripsi Fungsional secara Rinci	1
+5.2.1 Spesifikasi Fungsi: Kelola Bahan Baku (FR-001 s.d. FR-004)	1
+5.2.2 Spesifikasi Fungsi: Kelola Pesanan (FR-005, FR-006)	1
+5.2.3 Spesifikasi Fungsi: Kelola Produksi (FR-007, FR-008)	1
+5.2.4 Spesifikasi Fungsi: Kelola Restock (FR-009)	1
+5.2.5 Spesifikasi Fungsi: Cetak Laporan (FR-010 s.d. FR-012)	1
+5.3 Dekomposisi Fisik Modul	1
+5.4 Matriks Kerunutan	1
+6. Pengujian Perangkat Lunak	1
+6.1 Lingkungan Pengujian	1
+6.1.1 Perangkat Lunak Pengujian	1
+6.1.2 Perangkat Keras Pengujian	1
+6.2 Material Pengujian	1
+6.3 Sumber Daya Manusia	1
+6.4 Prosedur Umum Pengujian	1
+6.4.1 Pengenalan dan Latihan	1
+6.4.2 Persiapan Awal	1
+6.4.2.1 Persiapan Prosedural	1
+6.4.2.2 Persiapan Perangkat Keras	1
+6.4.2.3 Persiapan Perangkat Lunak	1
+6.4.3 Pelaksanaan	1
+6.4.4 Pelaporan Hasil	1
+6.5 Identifikasi dan Rencana Pengujian	1
+6.6 Deskripsi dan Hasil Uji	1
+6.6.1 Kelas Uji: Kelola Bahan Baku (KB)	1
+6.6.2 Kelas Uji: Input Pesanan (IP)	1
+6.6.3 Kelas Uji: Produksi (PR)	1
+6.7 Keterunutan Pengujian	1
+7. Spesifikasi Produk Perangkat Lunak	1
+7.1 Perangkat Lunak Siap Eksekusi	1
+7.2 Berkas Sumber	1
+7.3 Syarat Pemaketan	1
+7.4 Prosedur Konstruksi	1
+8. Panduan Instalasi	1
+8.1 Instalasi Program Siap Eksekusi	1
+8.2 Instalasi Kode Program Sumber	1
+9. Penutup	1
+
+
+
+
+1. Pendahuluan
+1.1 Tujuan Penulisan Dokumen
+Dokumen Deskripsi Pengembangan Perangkat Lunak (DPPL) ini disusun sebagai panduan teknis komprehensif untuk pengembangan Sistem Informasi Dapur dan Restock Warung Nasi Bakar. Dokumen ini mendeskripsikan seluruh aspek perancangan dan pengembangan perangkat lunak, mulai dari deskripsi umum sistem, kebutuhan fungsional dan non-fungsional, desain arsitektur, perancangan data, hingga rencana pengujian dan spesifikasi produk.
+Dokumen ini ditujukan untuk digunakan oleh:
+• Pengembang perangkat lunak sebagai acuan teknis implementasi sistem.
+• Manajer proyek untuk memantau cakupan dan kemajuan pengembangan.
+• Penguji sistem untuk merancang dan melaksanakan skenario pengujian.
+• Dosen pengampu sebagai evaluasi tugas besar mata kuliah Rekayasa Perangkat Lunak.
+• Pemilik Warung Nasi Bakar sebagai pengguna akhir dan pemangku kepentingan.
+
+1.2 Lingkup Masalah
+Perangkat lunak yang dikembangkan adalah Sistem Informasi Dapur dan Restock Warung Nasi Bakar. Sistem ini merupakan aplikasi berbasis web yang dirancang khusus untuk menggantikan seluruh proses manual pengelolaan dapur dan stok bahan baku pada Warung Nasi Bakar dengan alur digital yang terstruktur.
+Sistem ini akan:
+• Mendigitalisasi pencatatan stok bahan baku, pengecekan kedaluwarsa, dan proses restock secara terintegrasi.
+• Mengintegrasikan alur pesanan dari kasir ke dapur melalui antrian pesanan digital secara real-time.
+• Menyediakan laporan stok, produksi, dan restock yang dapat diakses pemilik melalui dashboard.
+• Mengurangi risiko operasional akibat proses manual dan meningkatkan efisiensi kerja dapur.
+Sistem ini tidak mencakup integrasi dengan platform pemesanan online, fitur pemesanan mandiri pelanggan (self-ordering), fitur akuntansi lanjutan, integrasi e-faktur, manajemen supplier otomatis, maupun aplikasi mobile.
+
+1.3 Definisi, Istilah dan Singkatan
+Istilah/SingkatanDefinisiDPPLDeskripsi Pengembangan Perangkat Lunak - dokumen teknis perancangan sistem.BRDBusiness Requirements Document - dokumen kebutuhan bisnis.DFDData Flow Diagram - diagram yang menggambarkan aliran data dalam sistem.SOPStandard Operating Procedure - prosedur operasional standar.UIUser Interface - antarmuka pengguna.FRFunctional Requirement - kebutuhan fungsional sistem.NFRNon-Functional Requirement - kebutuhan non-fungsional sistem.BRBusiness Rule - aturan bisnis yang berlaku.DashboardAntarmuka visual yang menyajikan ringkasan data operasional secara terpusat.FIFOFirst In First Out - pesanan yang masuk pertama diproses lebih dahulu.Status BahanKondisi bahan: Aman / Hampir Habis / Kedaluwarsa.Status PesananKondisi pesanan: Menunggu / Diproses / Selesai.UMKMUsaha Mikro, Kecil, dan Menengah.ULBIUniversitas Logistik dan Bisnis Internasional.As-IsSistem yang sedang berjalan saat ini sebelum dilakukan perubahan.To-BeSistem baru yang dirancang untuk menggantikan sistem lama.
+1.4 Referensi
+• Business Requirements Document (BRD) Sistem Informasi Dapur dan Restock Warung Nasi Bakar - ULBI, 2026.
+• Tugas Besar Desain Terstruktur Nasi Bakar - ULBI, 2026.
+• Template DPPL 2022 - Program Studi Teknik Informatika, Universitas Logistik dan Bisnis Internasional.
+• Hamidin, Dini. Materi Kuliah Rekayasa Perangkat Lunak - BRD, ULBI, 2026.
+
+1.5 Deskripsi Umum Dokumen (Ikhtisar)
+Dokumen DPPL ini disusun mengikuti sistematika sebagai berikut:
+• Bab 1 - Pendahuluan: Menjelaskan tujuan, lingkup, definisi istilah, referensi, dan ikhtisar dokumen.
+• Bab 2 - Deskripsi Umum Perangkat Lunak: Menjelaskan pendekatan desain, matriks kebutuhan, fungsi produk, karakteristik pengguna, batasan, dan lingkungan operasi.
+• Bab 3 - Deskripsi Umum Kebutuhan: Mendeskripsikan kebutuhan antarmuka eksternal, deskripsi fungsional (Context Diagram dan DFD), data requirement, non-functional requirement, batasan perancangan, kerunutan, dan ringkasan kebutuhan.
+• Bab 4 - Deskripsi Perancangan Global: Memuat rancangan lingkungan implementasi, deskripsi data (CDM, PDM, daftar tabel), dan dekomposisi fungsional modul.
+• Bab 5 - Deskripsi Perancangan Rinci: Memuat deskripsi rinci tabel, deskripsi fungsional rinci, dekomposisi fisik modul, dan matriks kerunutan.
+• Bab 6 - Pengujian Perangkat Lunak: Menjelaskan lingkungan pengujian, material, prosedur, identifikasi rencana uji, deskripsi dan hasil uji, serta keterunutan pengujian.
+• Bab 7 - Spesifikasi Produk Perangkat Lunak: Menjelaskan perangkat lunak siap eksekusi, berkas sumber, syarat pemaketan, dan prosedur konstruksi.
+• Bab 8 - Panduan Instalasi: Menjelaskan cara instalasi program dan kode sumber.
+• Bab 9 - Penutup: Berisi catatan penutup.
+
+
+2. Deskripsi Umum Perangkat Lunak
+2.1 Deskripsi Umum Desain
+Sistem Informasi Dapur dan Restock Warung Nasi Bakar dirancang dengan pendekatan desain terstruktur berbasis aliran data (Data Flow-based Design). Pendekatan ini dipilih karena sistem ini bersifat transaction-processing dengan aliran data yang jelas dan terdefinisi antara kasir, dapur, dan admin/pemilik.
+Fitur-fitur penting yang menjadi inti perancangan meliputi:
+• Modul Kelola Bahan Baku: Pencatatan dan monitoring stok bahan baku dengan status otomatis (Aman/Hampir Habis/Kedaluwarsa).
+• Modul Notifikasi Stok: Peringatan otomatis jika stok di bawah minimum atau bahan mendekati kedaluwarsa.
+• Modul Kelola Pesanan: Form input pesanan digital oleh kasir dengan antrian real-time ke dapur.
+• Modul Kelola Produksi: Pengelolaan status pesanan oleh dapur dan pengurangan stok otomatis setelah produksi selesai.
+• Modul Kelola Restock: Pencatatan penambahan stok bahan baku oleh dapur.
+• Modul Laporan: Dashboard admin dengan laporan stok, produksi harian, dan restock.
+• Modul Keamanan: Autentikasi berbasis role (Kasir / Dapur / Admin) dengan hak akses berbeda.
+
+2.2 Matriks Penelusuran Requirements
+Berikut adalah matriks yang menunjukkan di mana setiap requirement didukung oleh komponen desain sistem:
+
+RequirementModul BahanModul PesananModul ProduksiModul RestockModul LaporanModul AuthFR-001: Pencatatan Bahan BakuXFR-002: Monitoring Stok Real-timeXFR-003: Notifikasi Stok MinimumXFR-004: Notifikasi KedaluwarsaXFR-005: Input Pesanan DigitalXFR-006: Antrian Pesanan DapurXFR-007: Update Status ProduksiXFR-008: Pengurangan Stok OtomatisXXFR-009: Pencatatan RestockXFR-010: Laporan Stok BahanXFR-011: Laporan Produksi HarianXFR-012: Laporan RestockXNFR-003: Autentikasi PenggunaX
+2.2.1 Antarmuka Sistem
+Sistem Informasi Dapur dan Restock berinteraksi dengan dua antarmuka sistem utama:
+• Antarmuka Layar Dapur: Sistem mengirimkan antrian pesanan ke perangkat/layar dapur melalui koneksi LAN lokal (WebSocket atau HTTP polling) secara real-time.
+• Antarmuka Notifikasi: Sistem mengirimkan peringatan stok minimum dan kedaluwarsa ke halaman dashboard admin dan dapur secara otomatis.
+
+2.2.2 Antarmuka Pengguna
+Antarmuka pengguna dirancang sederhana dan intuitif. Karakteristik antarmuka:
+• Navigasi berbasis peran: tampilan dashboard berbeda untuk kasir, dapur, dan admin.
+• Form pesanan menampilkan pilihan menu, topping, dan level pedas dalam format yang mudah diisi.
+• Halaman antrian dapur menampilkan daftar pesanan secara real-time dengan tombol aksi status (Proses/Selesai).
+• Dashboard admin menyajikan ringkasan stok, notifikasi, dan akses cepat ke laporan.
+• Pesan validasi dan peringatan tampil dalam bahasa Indonesia dengan instruksi yang jelas.
+
+2.2.3 Antarmuka Hardware
+Perangkat keras yang dibutuhkan dan diantarmukakan oleh sistem:
+• Perangkat Kasir: PC/Tablet dengan RAM minimal 2GB, browser modern (Chrome, Firefox, Edge versi terbaru).
+• Layar Dapur: Perangkat display (tablet/monitor) yang terhubung ke jaringan LAN lokal yang sama dengan server.
+• Perangkat Admin: PC/Laptop dengan browser modern untuk mengakses dashboard dan laporan.
+
+2.2.4 Antarmuka Software
+Nama SoftwareVersiTujuanSistem OperasiWindows 10/11 atau Linux Ubuntu 20.04+Platform utama server dan klienBrowserChrome 110+, Firefox 110+, Edge 110+Antarmuka pengguna berbasis webDBMSMySQL 8.0 atau PostgreSQL 14+Manajemen basis data operasionalWeb ServerApache 2.4+ atau NginxHosting aplikasi webRuntimeNode.js 18+ atau PHP 8.1+Backend aplikasi
+2.2.5 Antarmuka Komunikasi
+• Protokol HTTP/HTTPS untuk komunikasi client-server antarmuka web.
+• WebSocket atau HTTP Polling (interval 3 detik) untuk notifikasi real-time ke layar dapur.
+• TCP/IP sebagai protokol jaringan dasar pada LAN lokal.
+
+2.2.6 Batasan Memory
+• RAM minimum klien: 2GB untuk menjalankan browser dengan aplikasi web.
+• Kapasitas database: Estimasi 3MB per bulan untuk 150 pesanan/hari. Disarankan media penyimpanan server minimal 10GB.
+• Tidak ada batasan RAM khusus untuk server, namun disarankan minimal 4GB untuk performa optimal.
+
+2.2.7 Operasi Pengguna
+• Kasir: Login ke sistem, membuka form pesanan, mengisi data pesanan pelanggan, dan mengirimkan ke antrian dapur.
+• Dapur: Login ke sistem, memproses pesanan berdasarkan antrian, memperbarui status produksi, dan mencatat restock bahan.
+• Admin/Pemilik: Login ke dashboard, mengelola data bahan baku, memantau notifikasi stok, dan mengakses laporan operasional.
+• Laporan stok dapat diakses kapan saja; sistem memantau stok dan kedaluwarsa secara otomatis selama aplikasi berjalan.
+
+2.3 Fungsi Produk
+NoFungsi UtamaDeskripsi Singkat1Pencatatan Bahan BakuAdmin memasukkan data bahan baku mencakup nama, kategori, stok, satuan, stok minimum, tanggal masuk, dan tanggal kedaluwarsa.2Monitoring Stok Real-timeSistem menampilkan kondisi stok bahan secara real-time dengan status Aman, Hampir Habis, atau Kedaluwarsa.3Notifikasi Stok MinimumSistem memberikan peringatan otomatis jika stok bahan berada di bawah batas minimum.4Notifikasi KedaluwarsaSistem memberikan peringatan otomatis jika bahan mendekati atau melewati tanggal kedaluwarsa.5Input Pesanan DigitalKasir memasukkan pesanan pelanggan melalui form digital mencakup menu, topping, level pedas, dan jumlah.6Antrian Pesanan DapurSistem meneruskan pesanan ke antrian dapur secara otomatis dan real-time setelah data pesanan lengkap.7Update Status ProduksiDapur memperbarui status pesanan (Menunggu/Diproses/Selesai) melalui halaman antrian.8Pengurangan Stok OtomatisSistem mengurangi stok bahan baku secara otomatis setelah status produksi diubah menjadi Selesai.9Pencatatan RestockDapur mencatat penambahan stok bahan baku melalui form restock; sistem memperbarui data stok.10Laporan Stok BahanSistem menghasilkan laporan kondisi stok bahan baku lengkap dengan status dan tanggal kedaluwarsa.11Laporan Produksi HarianSistem menghasilkan rekap produksi harian berdasarkan periode yang dipilih admin.12Laporan RestockSistem menghasilkan riwayat restock bahan baku berdasarkan periode yang dipilih admin.13Autentikasi Berbasis RoleLogin dengan username/password; hak akses berbeda untuk Kasir, Dapur, dan Admin.
+2.4 Karakteristik Pengguna
+Kategori PenggunaTugas/PekerjaanHak Akses ke AplikasiTingkat Keahlian ITAdmin/PemilikPengambil keputusan bisnis; memantau kondisi operasional dan mengelola data bahan.Akses penuh: manajemen bahan baku, dashboard notifikasi, semua laporan, manajemen pengguna.Dasar - menengahKasirOperator input pesanan; menginput pesanan pelanggan dan meneruskan ke dapur.Akses terbatas: form pesanan, lihat status pesanan.DasarDapurOperator produksi; memproses pesanan, mencatat restock, dan memantau stok.Akses produksi: antrian pesanan, update status, form restock, monitoring stok.Dasar
+2.5 Batasan
+• Sistem harus berjalan pada perangkat dengan spesifikasi menengah ke bawah (RAM minimal 2GB, browser modern) tanpa instalasi khusus yang kompleks.
+• Anggaran pengembangan disesuaikan dengan skala UMKM; tidak menggunakan infrastruktur cloud premium.
+• Pengembangan harus selesai dalam satu semester akademik.
+• Pada rilis pertama, sistem berdiri sendiri (standalone) tanpa integrasi ke platform pemesanan online eksternal.
+• Sistem harus mampu menangani minimal 150 pesanan dan 50 transaksi restock per hari tanpa penurunan performa.
+• Sistem harus tersedia minimal 99% selama jam operasional warung.
+
+2.6 Lingkungan Operasi
+KomponenSpesifikasiServer OSWindows 10/11 atau Linux Ubuntu 20.04+Client OSWindows 10/11, Android 10+ (untuk tablet layar dapur)DBMSMySQL 8.0+ atau PostgreSQL 14+Web ServerApache 2.4+ atau Nginx 1.20+Runtime BackendNode.js 18+ atau PHP 8.1+Browser KlienGoogle Chrome 110+, Mozilla Firefox 110+, Microsoft Edge 110+JaringanLAN lokal; koneksi internet minimal untuk akses eksternal (opsional)
+
+3. Deskripsi Umum Kebutuhan
+3.1 Kebutuhan Antarmuka Eksternal
+3.1.1 Antarmuka Pemakai
+User interface untuk mengoperasikan Sistem Informasi Dapur dan Restock menggunakan perangkat input standar:
+• Keyboard dan mouse untuk PC/laptop kasir dan admin.
+• Layar sentuh (touchscreen) untuk tablet kasir dan layar dapur.
+• Antarmuka berbasis browser web yang responsif dan intuitif.
+
+3.1.2 Antarmuka Perangkat Keras
+• Network Interface Card (NIC): Diperlukan pada setiap perangkat untuk koneksi jaringan LAN lokal.
+• Layar Dapur: Tablet atau monitor yang terhubung ke LAN untuk menampilkan antrian pesanan.
+
+3.1.3 Antarmuka Perangkat Lunak
+• Web Browser API: Untuk rendering antarmuka pengguna berbasis HTML5/CSS3/JavaScript.
+• REST API: Antarmuka komunikasi antara frontend (browser) dan backend server.
+• WebSocket API: Untuk notifikasi real-time antrian pesanan ke layar dapur.
+
+3.1.4 Antarmuka Komunikasi
+• HTTP/HTTPS (port 80/443): Untuk komunikasi request-response antara browser klien dan web server.
+• WebSocket (ws://): Untuk komunikasi real-time notifikasi pesanan ke dapur.
+• TCP/IP: Protokol jaringan dasar pada LAN lokal.
+
+3.2 Deskripsi Fungsional
+3.2.1 Context Diagram
+Context Diagram Sistem Informasi Dapur dan Restock Warung Nasi Bakar menggambarkan hubungan antara sistem dengan empat entitas eksternal utama:
+• Kasir: Mengirimkan data pesanan pelanggan ke sistem; menerima konfirmasi pesanan diterima dan status antrian.
+• Dapur: Menerima notifikasi antrian pesanan dari sistem; mengirimkan data status produksi dan restock bahan.
+• Admin/Pemilik: Mengirimkan data bahan baku dan permintaan laporan; menerima laporan stok, produksi, restock, dan notifikasi peringatan.
+• Supplier: Pihak eksternal yang memasok bahan baku; tidak memiliki akses langsung ke sistem.
+Proses utama dalam Context Diagram adalah SISTEM INFORMASI DAPUR DAN RESTOCK yang mengelola seluruh aliran data antara keempat entitas tersebut.
+
+3.2.1.1 DFD Level 1
+NoNama ProsesInputOutputData Store1.0Kelola PesananData pesanan dari KasirData pesanan ke DS-Pesanan; antrian ke DapurDS-Pesanan2.0Kelola ProduksiStatus produksi dari Dapur; antrian dari DS-PesananStatus pesanan diperbarui; trigger kurangi stok ke 3.0DS-Produksi, DS-Pesanan3.0Kelola Stok BahanData bahan dari Admin; update stok dari 2.0 dan 4.0Notifikasi stok ke Dapur dan Admin; status bahanDS-BahanBaku4.0Kelola RestockData restock dari DapurStok diperbarui; riwayat restock tersimpanDS-BahanBaku, DS-Restock5.0Cetak LaporanPermintaan dan periode dari AdminLaporan stok, produksi, restock ke AdminDS-BahanBaku, DS-Pesanan, DS-Produksi, DS-Restock6.0Autentikasi PenggunaKredensial dari Kasir/Dapur/AdminStatus login sesuai peranDS-Pengguna
+3.3 Data Requirement
+3.3.1 E-R Diagram
+E-R Diagram Konseptual Sistem Informasi Dapur dan Restock menggambarkan entitas-entitas utama beserta relasinya. Entitas utama dalam sistem:
+• PENGGUNA (id_pengguna, nama, username, password, role)
+• BAHAN_BAKU (id_bahan, nama_bahan, kategori, stok, satuan, stok_minimum, tanggal_masuk, tanggal_kedaluwarsa, status_bahan)
+• PESANAN (id_pesanan, tanggal_pesanan, id_kasir, nama_pelanggan, menu, topping, level_pedas, jumlah, status_pesanan)
+• PRODUKSI (id_produksi, id_pesanan, waktu_mulai, waktu_selesai, petugas_dapur, status_produksi)
+• RESTOCK (id_restock, id_bahan, tanggal_restock, jumlah_tambah, satuan, keterangan)
+Relasi antar entitas:
+• PENGGUNA (Kasir) - MEMBUAT - PESANAN (1:N)
+• PESANAN - MENGHASILKAN - PRODUKSI (1:1)
+• BAHAN_BAKU - MEMILIKI - RESTOCK (1:N)
+• PRODUKSI - MENGGUNAKAN - BAHAN_BAKU (N:M)
+
+3.4 Non Functional Requirement
+SRS-IdParameterRequirementNFR-001Response TimeSistem harus merespons aksi pengguna (input pesanan, update produksi, pencarian stok) dalam waktu maksimal 3 detik.NFR-002AvailabilitySistem tersedia minimal 99% selama jam operasional warung.NFR-003SecurityAkses ke sistem menggunakan username dan password; peran Kasir, Dapur, dan Admin dibedakan dengan hak akses berbeda.NFR-004Usability / ErgonomyKasir dan petugas dapur baru harus dapat mengoperasikan fitur inti setelah pelatihan maksimal 2 jam.NFR-005Data Integrity / ReliabilityData stok, pesanan, produksi, dan restock harus konsisten; tidak ada duplikasi atau data hilang saat terjadi gangguan.NFR-006ScalabilitySistem harus mampu menangani minimal 150 pesanan dan 50 transaksi restock per hari tanpa penurunan performa.NFR-007Portability / CompatibilitySistem harus berjalan pada perangkat PC/tablet dengan spesifikasi standar (RAM 2GB, browser modern).NFR-008MemoryAplikasi berjalan pada perangkat dengan RAM minimal 2GB. Penyimpanan database disarankan minimal 10GB untuk 1 tahun operasional.NFR-009SafetyN/A
+3.5 Batasan Perancangan
+• Sistem harus menggunakan arsitektur client-server berbasis web agar dapat diakses dari berbagai perangkat dalam jaringan LAN lokal tanpa instalasi aplikasi di sisi klien.
+• Database harus mendukung transaksi ACID untuk memastikan konsistensi data stok dan produksi.
+• Seluruh tampilan antarmuka harus dalam bahasa Indonesia.
+• Pengurangan stok bahan baku dilakukan secara otomatis oleh sistem; tidak boleh dilakukan secara manual untuk menjaga integritas data.
+• Sistem harus mendukung backup database otomatis minimal sekali sehari.
+
+3.6 Kerunutan (Traceability)
+3.6.1 Data Store vs E-R
+Data StoreEntityRelasiDS-BahanBakuBAHAN_BAKU-DS-PesananPESANANPESANAN dibuat oleh PENGGUNA (Kasir)DS-ProduksiPRODUKSIPRODUKSI mengacu ke PESANAN (1:1)DS-RestockRESTOCKRESTOCK mengacu ke BAHAN_BAKU (N:1)DS-PenggunaPENGGUNA-
+3.7 Ringkasan Kebutuhan
+3.7.1 Functional Requirement Summary
+SRS-IdDescriptionFR-001Admin dapat memasukkan data bahan baku mencakup nama, kategori, jumlah stok, satuan, stok minimum, tanggal masuk, dan tanggal kedaluwarsa.FR-002Sistem menampilkan informasi stok bahan secara real-time dengan status Aman, Hampir Habis, atau Kedaluwarsa.FR-003Sistem memberikan peringatan otomatis jika stok bahan berada di bawah batas minimum yang ditetapkan.FR-004Sistem memberikan peringatan otomatis jika bahan mendekati atau telah melewati tanggal kedaluwarsa.FR-005Kasir dapat memasukkan pesanan pelanggan melalui form digital mencakup menu, topping, level pedas, dan jumlah.FR-006Sistem meneruskan pesanan yang masuk ke antrian dapur secara otomatis dan real-time setelah data pesanan lengkap.FR-007Dapur dapat memperbarui status pesanan menjadi Menunggu, Diproses, atau Selesai melalui halaman antrian.FR-008Sistem mengurangi jumlah stok bahan baku terkait secara otomatis setelah status produksi diubah menjadi Selesai.FR-009Dapur dapat mencatat penambahan stok bahan baku mencakup nama bahan, jumlah tambah, satuan, tanggal restock, dan keterangan.FR-010Sistem menghasilkan laporan stok bahan yang menampilkan nama, stok, satuan, stok minimum, status, dan tanggal kedaluwarsa.FR-011Sistem menghasilkan laporan produksi harian mencakup tanggal, nomor pesanan, menu, jumlah, status, dan waktu selesai.FR-012Sistem menghasilkan laporan restock yang memuat tanggal, nama bahan, jumlah tambah, satuan, dan keterangan.FR-013Sistem menyediakan autentikasi login dengan username dan password untuk Kasir, Dapur, dan Admin dengan hak akses berbeda.
+3.7.2 Non Functional Requirement Summary
+SRS-IdDescriptionNFR-001Response time sistem maksimal 3 detik untuk setiap aksi pengguna.NFR-002Uptime sistem minimal 99% selama jam operasional warung.NFR-003Autentikasi berbasis username/password dengan role-based access control (Kasir/Dapur/Admin).NFR-004Kasir dan petugas dapur baru mampu mengoperasikan fitur inti setelah pelatihan maksimal 2 jam.NFR-005Konsistensi data stok, pesanan, produksi, dan restock; tidak ada duplikasi atau data hilang.NFR-006Kapasitas minimal 150 pesanan dan 50 transaksi restock per hari tanpa penurunan performa.NFR-007Kompatibel dengan PC/tablet RAM 2GB dan browser modern.NFR-008Penyimpanan server minimal 10GB untuk 1 tahun data operasional.
+
+4. Deskripsi Perancangan Global
+4.1 Rancangan Lingkungan Implementasi
+KomponenTeknologiVersiKeteranganBahasa PemrogramanJavaScript (Node.js) / PHPNode.js 18+ / PHP 8.1+Backend server aplikasiFramework BackendExpress.js / Laravel4.x / 10.xRESTful API serverFrontendHTML5, CSS3, JavaScript (Vanilla/Vue.js)ES2022+Antarmuka pengguna berbasis webDBMSMySQL8.0+Penyimpanan data operasionalWeb ServerApache / Nginx2.4+ / 1.20+Hosting aplikasi webOS ServerUbuntu Linux22.04 LTSPlatform serverWebSocketSocket.io / ws2.x+Notifikasi real-time antrian dapurVersion ControlGit2.xManajemen kode sumber
+4.2 Deskripsi Data
+4.2.1 Definisi Domain/Type
+Domain NameTipe DataKeteranganStatusBahanENUM('Aman','HampirHabis','Kedaluwarsa')Status kondisi bahan baku secara otomatisStatusPesananENUM('Menunggu','Diproses','Selesai')Status pemrosesan pesanan di antrian dapurStatusProduksiENUM('Diproses','Selesai')Status proses produksi pesanan oleh dapurRoleUserENUM('Kasir','Dapur','Admin')Peran pengguna dalam sistemJumlahStokINT(11)Jumlah kuantitas bahan baku dalam satuan tertentuTanggalKadaluwarsaDATETanggal batas layak pakai bahan baku
+4.2.2 Conceptual Data Model
+Conceptual Data Model (CDM) menggambarkan entitas dan relasinya secara konseptual tanpa mempertimbangkan implementasi fisik database. Entitas utama beserta relasinya:
+• PENGGUNA berelasi MEMBUAT dengan PESANAN (satu pengguna kasir dapat membuat banyak pesanan).
+• PESANAN berelasi MENGHASILKAN dengan PRODUKSI (satu pesanan menghasilkan satu record produksi).
+• BAHAN_BAKU berelasi MEMILIKI dengan RESTOCK (satu bahan baku dapat memiliki banyak riwayat restock).
+• PRODUKSI berelasi MENGGUNAKAN dengan BAHAN_BAKU (banyak produksi menggunakan banyak bahan baku - relasi N:M).
+
+4.2.3 Physical Data Model
+Physical Data Model (PDM) merupakan penjabaran CDM ke dalam struktur tabel database dengan tipe data, primary key, foreign key, dan constraint yang spesifik. PDM ini digunakan sebagai acuan pembuatan script DDL database.
+Tabel-tabel dalam PDM: t_pengguna, t_bahan_baku, t_pesanan, t_produksi, t_restock, t_produksi_bahan.
+
+4.2.4 Daftar Tabel Aplikasi
+Nama TabelPrimary KeyData StoreE/RDeskripsi Isit_penggunaid_penggunaDS-PenggunaPENGGUNAMenyimpan data pengguna sistem (kasir, dapur, admin).t_bahan_bakuid_bahanDS-BahanBakuBAHAN_BAKUMenyimpan data bahan baku beserta stok, satuan, stok minimum, dan tanggal kedaluwarsa.t_pesananid_pesananDS-PesananPESANANMenyimpan data pesanan yang dibuat kasir.t_produksiid_produksiDS-ProduksiPRODUKSIMenyimpan data proses produksi per pesanan.t_restockid_restockDS-RestockRESTOCKMenyimpan riwayat penambahan stok bahan baku.t_produksi_bahanid_pbDS-ProduksiPRODUKSI_BAHANTabel junction N:M antara produksi dan bahan baku.
+4.3 Dekomposisi Fungsional Modul
+No. FungsiFungsi/ProsesTabel/Data InputTabel/Data OutputKeterangan1.0Autentikasi Logint_penggunaSession/TokenVerifikasi username dan password; set role.2.0Kelola Bahan BakuInput admint_bahan_bakuCRUD data bahan baku beserta stok minimum dan kedaluwarsa.2.1Cek Status Bahant_bahan_bakuStatus ke UIEvaluasi Aman/Hampir Habis/Kedaluwarsa secara otomatis.2.2Notifikasi Stok Min.t_bahan_bakuNotifikasi ke Dapur & AdminTrigger jika stok < stok_minimum.2.3Notifikasi Kedaluwarsat_bahan_bakuNotifikasi ke Dapur & AdminTrigger jika tgl_kedaluwarsa <= 3 hari atau terlewat.3.0Input PesananInput kasirt_pesananIsi form pesanan; validasi kelengkapan data.3.1Kirim ke Antrian Dapurt_pesananAntrian ke layar dapurWebSocket push setelah pesanan valid.4.0Update Status ProduksiInput dapurt_pesanan, t_produksiUbah status; catat waktu mulai/selesai.4.1Kurangi Stok Otomatist_produksi, t_bahan_bakut_bahan_bakuTrigger saat status = Selesai.5.0Catat RestockInput dapurt_restock, t_bahan_bakuTambah jumlah stok; simpan riwayat.6.0Laporan Stokt_bahan_bakuDashboard adminTampilkan kondisi stok seluruh bahan.6.1Laporan Produksi Hariant_produksi, t_pesananDashboard adminFilter berdasarkan periode.6.2Laporan Restockt_restockDashboard adminFilter berdasarkan periode.
+
+5. Deskripsi Perancangan Rinci
+5.1 Deskripsi Rinci Tabel
+5.1.1 Tabel t_pengguna
+Identifikasi/Nama : t_pengguna
+Deskripsi Isi : Menyimpan data pengguna sistem (kasir, dapur, dan admin).
+Primary Key : id_pengguna
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_penggunaID unik penggunaINT (11)NOAUTO_INCREMENTPKnamaNama lengkap penggunaVARCHAR (100)NO-usernameUsername untuk loginVARCHAR (50)NO-UNIQUEpasswordPassword terenkripsi (bcrypt)VARCHAR (255)NO-HashedrolePeran penggunaENUM('Kasir','Dapur','Admin')NOKasirstatus_aktifStatus akunTINYINT (1)NO11=aktif, 0=nonaktifcreated_atWaktu pembuatan akunDATETIMENOCURRENT_TIMESTAMP
+5.1.2 Tabel t_bahan_baku
+Identifikasi/Nama : t_bahan_baku
+Deskripsi Isi : Menyimpan data bahan baku beserta stok, satuan, stok minimum, dan tanggal kedaluwarsa.
+Primary Key : id_bahan
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_bahanID unik bahan bakuINT (11)NOAUTO_INCREMENTPKnama_bahanNama bahan bakuVARCHAR (100)NO-kategoriJenis atau kategori bahanVARCHAR (50)YESNULLstokJumlah stok tersediaINT (11)NO0satuanSatuan bahan (kg/gram/pcs/liter/lembar)VARCHAR (20)NO-stok_minimumBatas minimum stokINT (11)NO0Trigger notifikasitanggal_masukTanggal bahan masuk gudangDATENO-tanggal_kedaluwarsaTanggal batas layak pakaiDATEYESNULLstatus_bahanStatus kondisi bahanENUM('Aman','HampirHabis','Kedaluwarsa')NOAmanAuto-updateupdated_atWaktu update terakhirDATETIMEYESNULL
+5.1.3 Tabel t_pesanan
+Identifikasi/Nama : t_pesanan
+Deskripsi Isi : Menyimpan data pesanan yang dibuat kasir.
+Primary Key : id_pesanan
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_pesananID unik pesananINT (11)NOAUTO_INCREMENTPKtanggal_pesananWaktu pesanan dibuatDATETIMENOCURRENT_TIMESTAMPid_kasirID kasir pembuat pesananINT (11)NO-FK -> t_penggunanama_pelangganNama pelangganVARCHAR (100)YESNULLOpsionalmenuNama menu yang dipesanVARCHAR (100)NO-toppingPilihan toppingVARCHAR (100)YESNULLlevel_pedasLevel kepedasanVARCHAR (20)NO-jumlahJumlah porsi dipesanINT (5)NO1status_pesananStatus pesananENUM('Menunggu','Diproses','Selesai')NOMenunggucatatanCatatan khusus pesananTEXTYESNULL
+5.1.4 Tabel t_produksi
+Identifikasi/Nama : t_produksi
+Deskripsi Isi : Menyimpan data proses produksi per pesanan.
+Primary Key : id_produksi
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_produksiID unik produksiINT (11)NOAUTO_INCREMENTPKid_pesananReferensi ke pesananINT (11)NO-FK -> t_pesanan, UNIQUEwaktu_mulaiWaktu produksi dimulaiDATETIMEYESNULLDiisi saat Proses diklikwaktu_selesaiWaktu produksi selesaiDATETIMEYESNULLDiisi saat Selesai diklikpetugas_dapurID petugas dapurINT (11)NO-FK -> t_penggunastatus_produksiStatus produksiENUM('Diproses','Selesai')NODiproses
+5.1.5 Tabel t_restock
+Identifikasi/Nama : t_restock
+Deskripsi Isi : Menyimpan riwayat penambahan stok bahan baku oleh dapur.
+Primary Key : id_restock
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_restockID unik restockINT (11)NOAUTO_INCREMENTPKid_bahanReferensi ke bahan bakuINT (11)NO-FK -> t_bahan_bakutanggal_restockTanggal restock dilakukanDATENOCURRENT_DATEjumlah_tambahJumlah bahan yang ditambahkanINT (11)NO0satuanSatuan bahanVARCHAR (20)NO-keteranganCatatan tambahan restockTEXTYESNULLid_petugasID petugas dapur yang mencatatINT (11)NO-FK -> t_penggunacreated_atWaktu pencatatan restockDATETIMENOCURRENT_TIMESTAMP
+5.1.6 Tabel t_produksi_bahan
+Identifikasi/Nama : t_produksi_bahan
+Deskripsi Isi : Tabel junction yang menyimpan relasi N:M antara produksi dan bahan baku yang digunakan.
+Primary Key : id_pb
+
+Id FieldDeskripsiTipe & LengthBoleh NULLDefaultKeteranganid_pbID unik recordINT (11)NOAUTO_INCREMENTPKid_produksiReferensi ke produksiINT (11)NO-FK -> t_produksiid_bahanReferensi ke bahan bakuINT (11)NO-FK -> t_bahan_bakujumlah_digunakanJumlah bahan yang digunakanINT (11)NO0satuanSatuan bahanVARCHAR (20)NO-
+5.2 Deskripsi Fungsional secara Rinci
+5.2.1 Spesifikasi Fungsi: Kelola Bahan Baku (FR-001 s.d. FR-004)
+Identifikasi/NamaF-001: Kelola Bahan BakuDeskripsi IsiAdmin memasukkan data bahan baku; sistem memantau stok dan memberikan peringatan otomatis jika stok di bawah minimum atau bahan mendekati/melewati kedaluwarsa.JenisForm Entry + Proses Otomatis (Notifikasi)Tabel InputInput admin; t_bahan_baku (baca/tulis)Tabel Outputt_bahan_baku (tulis); notifikasi ke UI Dapur dan AdminAlgoritma1. Tampilkan form data bahan baku.
+2. Admin mengisi nama, kategori, stok, satuan, stok minimum, tanggal masuk, tanggal kedaluwarsa.
+3. Sistem menyimpan data ke t_bahan_baku.
+4. Sistem mengevaluasi: jika stok < stok_minimum, set status_bahan = HampirHabis dan tampilkan notifikasi.
+5. Sistem mengevaluasi: jika tanggal_kedaluwarsa <= 3 hari dari hari ini, tampilkan notifikasi Mendekati Kedaluwarsa.
+6. Jika tanggal_kedaluwarsa telah terlewat, set status_bahan = Kedaluwarsa.
+7. Jika kondisi normal, set status_bahan = Aman.
+5.2.2 Spesifikasi Fungsi: Kelola Pesanan (FR-005, FR-006)
+Identifikasi/NamaF-002: Kelola Pesanan DigitalDeskripsi IsiKasir memasukkan pesanan pelanggan ke dalam sistem; sistem memvalidasi kelengkapan dan meneruskan pesanan ke antrian dapur secara real-time.JenisForm Entry + Notifikasi Real-timeTabel InputInput kasir; t_pengguna (baca)Tabel Outputt_pesanan (tulis); notifikasi antrian ke layar dapur via WebSocketAlgoritma1. Kasir membuka halaman form pesanan.
+2. Kasir mengisi: menu, topping, level pedas, jumlah, catatan (opsional).
+3. Sistem memvalidasi kelengkapan data (menu, level pedas, jumlah wajib diisi).
+4. Jika data tidak lengkap: tampilkan pesan validasi, hentikan proses.
+5. Jika data lengkap: simpan ke t_pesanan dengan status = Menunggu.
+6. Sistem mengirimkan notifikasi antrian ke layar dapur via WebSocket.
+7. Kasir menerima konfirmasi pesanan berhasil dikirim.
+5.2.3 Spesifikasi Fungsi: Kelola Produksi (FR-007, FR-008)
+Identifikasi/NamaF-003: Kelola ProduksiDeskripsi IsiDapur memproses pesanan berdasarkan antrian FIFO; memperbarui status produksi; sistem mengurangi stok bahan baku secara otomatis setelah produksi selesai.JenisForm Entry + Proses Otomatis (Pengurangan Stok)Tabel InputInput dapur; t_pesanan (baca); t_bahan_baku (baca)Tabel Outputt_pesanan (update); t_produksi (tulis); t_bahan_baku (update stok)Algoritma1. Dapur membuka halaman antrian pesanan.
+2. Dapur memilih pesanan berdasarkan urutan FIFO.
+3. Dapur menekan tombol Proses; sistem: set status_pesanan = Diproses, buat record t_produksi dengan waktu_mulai = now().
+4. Dapur memproses pesanan (persiapan bahan, pembakaran, packing).
+5. Dapur menekan tombol Selesai; sistem: set status_pesanan = Selesai, set waktu_selesai = now().
+6. Sistem secara otomatis mengurangi stok bahan baku terkait di t_bahan_baku berdasarkan referensi t_produksi_bahan.
+7. Sistem mengevaluasi ulang status_bahan setelah pengurangan stok.
+5.2.4 Spesifikasi Fungsi: Kelola Restock (FR-009)
+Identifikasi/NamaF-004: Kelola RestockDeskripsi IsiDapur mencatat penambahan stok bahan baku; sistem memperbarui jumlah stok dan menyimpan riwayat restock.JenisForm EntryTabel InputInput dapur; t_bahan_baku (baca)Tabel Outputt_restock (tulis); t_bahan_baku (update stok)Algoritma1. Dapur membuka form restock bahan.
+2. Dapur memilih nama bahan dari daftar (dropdown dari t_bahan_baku).
+3. Dapur mengisi: jumlah tambah, tanggal restock, keterangan.
+4. Sistem memvalidasi kelengkapan data (nama bahan dan jumlah tambah wajib diisi).
+5. Jika valid: simpan ke t_restock, tambahkan jumlah_tambah ke stok bahan di t_bahan_baku.
+6. Sistem mengevaluasi ulang status_bahan setelah penambahan stok.
+5.2.5 Spesifikasi Fungsi: Cetak Laporan (FR-010 s.d. FR-012)
+Identifikasi/NamaF-005: Cetak LaporanDeskripsi IsiSistem menghasilkan laporan operasional (stok bahan, produksi harian, restock) berdasarkan periode yang dipilih admin.JenisReport UITabel InputAdmin memilih jenis laporan dan periode; t_bahan_baku / t_pesanan / t_produksi / t_restock (baca)Tabel OutputData laporan ke dashboard adminAlgoritma1. Admin membuka halaman laporan.
+2. Admin memilih jenis laporan: Stok Bahan / Produksi Harian / Restock.
+3. Admin memilih periode waktu laporan.
+4. Sistem mengambil data dari tabel terkait sesuai jenis dan periode.
+5. Jika data tersedia: sistem menampilkan data laporan dalam format tabel.
+6. Admin dapat mengunduh laporan dalam format yang tersedia.
+7. Jika data tidak tersedia pada periode tersebut: sistem menampilkan pesan informasi.
+5.3 Dekomposisi Fisik Modul
+Nama DirektoriNama FileNama ModulNama FungsiKeterangan/routesauth.jsAuthModulelogin(), logout()Autentikasi dan manajemen sesi/routesbahan.jsBahanModuleCRUD bahan, cekStatus()Kelola bahan baku dan evaluasi status/routespesanan.jsPesananModulecreatePesanan(), getAntrian()Input pesanan dan antrian dapur/routesproduksi.jsProduksiModuleupdateStatus(), kurangiStok()Update produksi dan pengurangan stok/routesrestock.jsRestockModulecreateRestock()Catat restock bahan/routeslaporan.jsLaporanModulegetStokReport(), getProduksiReport(), getRestockReport()Laporan operasional/modelsPengguna.jsModelfindByUsername()ORM untuk t_pengguna/modelsBahanBaku.jsModelfindAll(), updateStok()ORM untuk t_bahan_baku/modelsPesanan.jsModelcreate(), getAntrian()ORM untuk t_pesanan/modelsProduksi.jsModelcreate(), updateStatus()ORM untuk t_produksi/modelsRestock.jsModelcreate()ORM untuk t_restock/socketnotifikasi.jsSocketModulesendToDapur()WebSocket push antrian ke layar dapur/publickasir.htmlUI-Kasir-Antarmuka form pesanan kasir/publicdapur.htmlUI-Dapur-Layar antrian pesanan dapur/publicadmin.htmlUI-Admin-Dashboard admin: bahan, notifikasi, laporan
+5.4 Matriks Kerunutan
+SRS-IdNo. FungsiKeteranganFR-001F-001 (Kelola Bahan Baku)Dipenuhi oleh BahanModule - fungsi pencatatan dan update data bahan.FR-002F-001 (Cek Status Bahan)Dipenuhi oleh fungsi cekStatus() yang mengevaluasi status bahan secara otomatis.FR-003F-001 (Notifikasi Stok Min.)Dipenuhi oleh logika trigger notifikasi jika stok < stok_minimum.FR-004F-001 (Notifikasi Kedaluwarsa)Dipenuhi oleh logika trigger notifikasi berdasarkan tanggal_kedaluwarsa.FR-005F-002 (Input Pesanan)Dipenuhi oleh PesananModule - fungsi createPesanan().FR-006F-002 (Kirim Antrian)Dipenuhi oleh SocketModule - fungsi sendToDapur() via WebSocket.FR-007F-003 (Update Status Produksi)Dipenuhi oleh ProduksiModule - fungsi updateStatus().FR-008F-003 (Kurangi Stok Otomatis)Dipenuhi oleh fungsi kurangiStok() yang dipanggil saat status = Selesai.FR-009F-004 (Kelola Restock)Dipenuhi oleh RestockModule - fungsi createRestock().FR-010F-005 (Laporan Stok)Dipenuhi oleh LaporanModule - fungsi getStokReport().FR-011F-005 (Laporan Produksi)Dipenuhi oleh LaporanModule - fungsi getProduksiReport().FR-012F-005 (Laporan Restock)Dipenuhi oleh LaporanModule - fungsi getRestockReport().FR-013F-000 (Autentikasi)Dipenuhi oleh AuthModule dengan role-based access control.NFR-001Semua modulResponse time dikontrol via optimasi query, indexing database, dan caching.NFR-003AuthModuleDipenuhi oleh autentikasi JWT/Session dengan RBAC (Kasir/Dapur/Admin).
+
+6. Pengujian Perangkat Lunak
+6.1 Lingkungan Pengujian
+6.1.1 Perangkat Lunak Pengujian
+Nama Perangkat LunakVersiLisensiTujuanPostman10.xFreewarePengujian REST API endpointGoogle Chrome110+FreewarePengujian antarmuka web kasir, dapur, dan adminMySQL Workbench8.0Freeware (GPLv2)Verifikasi data tersimpan di databaseNode.js18+MIT LicenseMenjalankan server aplikasi untuk pengujianJest29.xMIT LicensePengujian unit otomatis (unit testing)Ubuntu Linux22.04 LTSGPLSistem operasi server pengujian
+6.1.2 Perangkat Keras Pengujian
+PerangkatSpesifikasiPeranPC Pengujian (Server)CPU: Intel Core i5, RAM: 8GB, Storage: 256GB SSDMenjalankan aplikasi server dan database MySQLLaptop KasirCPU: Intel Core i3/AMD Ryzen 3, RAM: 4GB, Browser: Chrome 110+Simulasi perangkat kasir, pengujian UI dan input pesananTablet DapurAndroid 10+, RAM: 2GB, Browser: ChromeSimulasi layar antrian dapur, pengujian notifikasi real-timeRouter/SwitchTP-Link, 100Mbps LANKoneksi jaringan lokal antar perangkat
+6.2 Material Pengujian
+• Data master bahan baku: minimal 10 item bahan dengan variasi stok dan tanggal kedaluwarsa (data uji representatif).
+• Akun pengguna uji: 1 akun kasir, 1 akun dapur, dan 1 akun admin dengan password terenkripsi.
+• Skenario pengujian (test case) tertulis yang mengacu pada requirement FR dan NFR.
+
+6.3 Sumber Daya Manusia
+PeranJumlahKeahlianWaktu KeterlibatanPengembang/Tester3 orangPemrograman web, testing manual, familiar dengan BRDSeluruh fase pengujianPengguna Simulasi (Kasir)1 orangKemampuan dasar operasi komputerPengujian User Acceptance Test (UAT)Pengguna Simulasi (Dapur)1 orangKemampuan dasar operasi komputerPengujian User Acceptance Test (UAT)Reviewer (Dosen)1 orangRekayasa Perangkat LunakVerifikasi dan validasi akhir
+6.4 Prosedur Umum Pengujian
+6.4.1 Pengenalan dan Latihan
+Sebelum pengujian formal dilakukan, seluruh anggota tim melakukan sesi pengenalan sistem selama 2 jam, mencakup:
+• Pemahaman alur utama sistem (login, kelola bahan, input pesanan, produksi, restock, laporan).
+• Pemahaman skenario pengujian yang telah disusun.
+• Latihan penggunaan tools pengujian (Postman untuk API, browser devtools untuk UI).
+
+6.4.2 Persiapan Awal
+6.4.2.1 Persiapan Prosedural
+• Memastikan server aplikasi berjalan dan dapat diakses dari semua perangkat uji.
+• Memastikan database telah diisi dengan data master yang diperlukan (bahan baku, pengguna).
+• Mencatat kondisi awal sistem (jumlah data di setiap tabel) sebagai baseline.
+
+6.4.2.2 Persiapan Perangkat Keras
+• Menghubungkan semua perangkat ke jaringan LAN yang sama.
+• Setting IP statis untuk server agar semua klien dapat mengakses dengan URL konsisten.
+• Memverifikasi koneksi layar dapur (tablet/monitor) ke jaringan LAN lokal.
+
+6.4.2.3 Persiapan Perangkat Lunak
+• Deploy aplikasi ke server dengan konfigurasi lingkungan pengujian (bukan production).
+• Import data uji awal ke database menggunakan script SQL yang telah disiapkan.
+• Buka Postman dan import koleksi endpoint API yang akan diuji.
+
+6.4.3 Pelaksanaan
+Strategi pelaksanaan pengujian dilakukan secara bertahap:
+• Tahap 1 - Unit Testing: Pengujian fungsi individual menggunakan Jest untuk backend (validasi stok, evaluasi status bahan, logika pengurangan stok otomatis).
+• Tahap 2 - Integration Testing: Pengujian alur antar modul menggunakan Postman (alur pesanan -> produksi -> kurangi stok; alur restock -> update stok).
+• Tahap 3 - System Testing: Pengujian sistem secara end-to-end menggunakan browser (skenario lengkap dari login, input pesanan, proses produksi, hingga laporan).
+• Tahap 4 - User Acceptance Testing (UAT): Pengujian oleh pengguna simulasi (kasir dan dapur non-teknis) untuk memvalidasi usability.
+
+6.4.4 Pelaporan Hasil
+Hasil pengujian akan didokumentasikan dalam tabel hasil uji dan diserahkan kepada dosen pengampu beserta kesimpulan kesesuaian dengan requirement yang telah ditetapkan.
+
+6.5 Identifikasi dan Rencana Pengujian
+Kelas UjiButir UjiID SKPLID DPPLTingkat PengujianJenisJadwalAutentikasiLogin valid KasirNFR-003AU_01SistemBlack BoxMinggu 1AutentikasiLogin invalid (password salah)NFR-003AU_02SistemBlack BoxMinggu 1AutentikasiHak akses berbeda per roleNFR-003AU_03SistemBlack BoxMinggu 1Kelola BahanTambah bahan baruFR-001KB_01SistemBlack BoxMinggu 1Kelola BahanEdit data bahanFR-001KB_02SistemBlack BoxMinggu 1Kelola BahanNotifikasi stok minimumFR-003KB_03UnitBlack BoxMinggu 2Kelola BahanNotifikasi kedaluwarsaFR-004KB_04UnitBlack BoxMinggu 2Kelola BahanStatus bahan otomatisFR-002KB_05UnitBlack BoxMinggu 2Input PesananInput pesanan lengkapFR-005IP_01SistemBlack BoxMinggu 2Input PesananValidasi pesanan tidak lengkapFR-005IP_02UnitBlack BoxMinggu 2Input PesananAntrian real-time ke dapurFR-006IP_03SistemBlack BoxMinggu 2ProduksiUpdate status ProsesFR-007PR_01SistemBlack BoxMinggu 3ProduksiUpdate status SelesaiFR-007PR_02SistemBlack BoxMinggu 3ProduksiKurangi stok otomatis setelah SelesaiFR-008PR_03UnitBlack BoxMinggu 3RestockCatat restock bahanFR-009RS_01SistemBlack BoxMinggu 3RestockUpdate stok setelah restockFR-009RS_02UnitBlack BoxMinggu 3LaporanLaporan stok bahanFR-010LP_01SistemBlack BoxMinggu 4LaporanLaporan produksi harianFR-011LP_02SistemBlack BoxMinggu 4LaporanLaporan restockFR-012LP_03SistemBlack BoxMinggu 4NFR Response TimeResponse time < 3 detikNFR-001NFR_01SistemPerformanceMinggu 4
+6.6 Deskripsi dan Hasil Uji
+6.6.1 Kelas Uji: Kelola Bahan Baku (KB)
+6.6.1.1 KB_03 - Notifikasi Stok Minimum
+IdentifikasiDeskripsiProsedur PengujianMasukanKeluaran yang DiharapkanKriteria EvaluasiHasilKesimpulanKB_03Pengujian notifikasi otomatis ketika stok bahan di bawah minimum1) Login sebagai Admin.
+2) Buka halaman bahan baku.
+3) Set stok bahan 'Bumbu Pedas' = 1 (stok_minimum = 2).
+4) Simpan data dan refresh halaman.Stok Bumbu Pedas = 1; stok_minimum = 2Sistem menampilkan notifikasi peringatan 'Stok Hampir Habis' dan mengubah status_bahan menjadi HampirHabis.Notifikasi muncul dan status bahan berubah dalam waktu < 3 detik.SESUAIDiterimaKB_04Pengujian notifikasi kedaluwarsa bahan mendekati tanggal kedaluwarsa1) Login sebagai Admin.
+2) Set tanggal_kedaluwarsa bahan 'Daun Pisang' = 2 hari dari sekarang.
+3) Simpan data dan refresh halaman.tanggal_kedaluwarsa = H+2Sistem menampilkan notifikasi 'Mendekati Kedaluwarsa' dan status bahan berubah menjadi HampirHabis.Notifikasi muncul dan status bahan berubah sesuai logika kedaluwarsa.SESUAIDiterima
+6.6.2 Kelas Uji: Input Pesanan (IP)
+6.6.2.1 IP_01 - Input Pesanan Lengkap
+IdentifikasiDeskripsiProsedur PengujianMasukanKeluaran yang DiharapkanKriteria EvaluasiHasilKesimpulanIP_01Pengujian input pesanan lengkap oleh kasir1) Login sebagai Kasir.
+2) Buka form pesanan.
+3) Pilih menu 'Nasi Bakar Ayam', topping 'Cumi', level pedas 'Sedang', jumlah 2.
+4) Klik Kirim Pesanan.Menu: Nasi Bakar Ayam; Topping: Cumi; Level: Sedang; Jumlah: 2Pesanan tersimpan di sistem dengan status Menunggu; antrian pesanan tampil di layar dapur secara real-time.Pesanan tampil di antrian dapur dalam waktu < 3 detik.SESUAIDiterimaIP_02Pengujian validasi pesanan tidak lengkap1) Login sebagai Kasir.
+2) Buka form pesanan.
+3) Isi menu tapi kosongkan jumlah.
+4) Klik Kirim Pesanan.Menu diisi; Jumlah dikosongkanSistem menampilkan pesan validasi 'Jumlah porsi wajib diisi'; pesanan tidak dikirim.Pesan validasi muncul; pesanan tidak masuk ke antrian dapur.SESUAIDiterima
+6.6.3 Kelas Uji: Produksi (PR)
+6.6.3.1 PR_03 - Pengurangan Stok Otomatis
+IdentifikasiDeskripsiProsedur PengujianMasukanKeluaran yang DiharapkanKriteria EvaluasiHasilKesimpulanPR_03Pengujian pengurangan stok bahan otomatis setelah produksi selesai1) Login sebagai Dapur.
+2) Catat stok awal bahan 'Nasi' = 25 porsi.
+3) Pilih pesanan 2 porsi Nasi Bakar Ayam.
+4) Klik Proses, lalu klik Selesai.
+5) Cek stok bahan 'Nasi' setelah produksi.Status produksi diubah menjadi Selesai oleh dapurStok bahan 'Nasi' berkurang dari 25 menjadi 23; status_bahan dievaluasi ulang secara otomatis.Stok berkurang sesuai jumlah produksi; evaluasi status bahan dijalankan otomatis.SESUAIDiterima
+6.7 Keterunutan Pengujian
+Kasus UjiRequirement yang DiujiKeteranganAU_01, AU_02, AU_03NFR-003Semua skenario autentikasi dan kontrol akses per role telah diuji.KB_01, KB_02FR-001Pencatatan dan edit data bahan baku telah diuji.KB_03FR-003Notifikasi stok minimum telah diuji dan memenuhi requirement.KB_04FR-004Notifikasi kedaluwarsa telah diuji dan memenuhi requirement.KB_05FR-002Evaluasi status bahan otomatis telah diuji.IP_01, IP_02FR-005Input pesanan dan validasi kelengkapan data telah diuji.IP_03FR-006Antrian real-time ke dapur telah diuji.PR_01, PR_02FR-007Update status produksi oleh dapur telah diuji.PR_03FR-008Pengurangan stok otomatis setelah produksi selesai telah diuji.RS_01, RS_02FR-009Pencatatan restock dan update stok otomatis telah diuji.LP_01, LP_02, LP_03FR-010, FR-011, FR-012Laporan stok, produksi, dan restock telah diuji.NFR_01NFR-001Response time < 3 detik telah diverifikasi pada semua skenario utama.
+
+7. Spesifikasi Produk Perangkat Lunak
+7.1 Perangkat Lunak Siap Eksekusi
+Perangkat lunak yang siap dieksekusi terdiri dari:
+• File aplikasi web (direktori /dist atau /build) yang siap di-deploy ke web server.
+• Script database (schema.sql dan seed.sql) untuk inisialisasi database.
+• File konfigurasi (.env.production) untuk pengaturan environment variabel produksi.
+• File start-up (start.sh atau pm2.config.js) untuk menjalankan server secara otomatis.
+
+7.2 Berkas Sumber
+Berkas sumber yang diperlukan untuk membangun ulang perangkat lunak:
+• Direktori /src: Berisi seluruh kode sumber backend (routes, models, socket, middleware).
+• Direktori /public: Berisi seluruh kode sumber frontend (HTML, CSS, JavaScript).
+• File package.json: Daftar dependensi Node.js.
+• File README.md: Panduan instalasi dan pengembangan.
+• Direktori /tests: Berisi script unit testing (Jest).
+• Direktori /database: Berisi file schema.sql, seed.sql, dan skrip migrasi.
+
+7.3 Syarat Pemaketan
+Syarat pemaketan untuk distribusi perangkat lunak:
+• Seluruh kode sumber dan aset dikemas dalam satu arsip ZIP/TAR.GZ.
+• File .env.example disertakan sebagai template konfigurasi (tanpa nilai sensitif).
+• Dokumentasi (DPPL dan BRD) disertakan dalam format PDF.
+• Versi produk ditandai menggunakan Git Tag (format: v1.0.0).
+
+7.4 Prosedur Konstruksi
+Prosedur untuk membangun ulang perangkat lunak dari kode sumber:
+• Prasyarat: Node.js 18+, MySQL 8.0+, npm 9+.
+• Langkah 1: Clone repository atau ekstrak arsip kode sumber.
+• Langkah 2: Jalankan 'npm install' untuk menginstal dependensi.
+• Langkah 3: Salin .env.example menjadi .env dan isi nilai konfigurasi (DB_HOST, DB_USER, DB_PASS, dll.).
+• Langkah 4: Buat database MySQL dan jalankan 'npm run db:migrate' untuk membuat struktur tabel.
+• Langkah 5: Jalankan 'npm run db:seed' untuk mengisi data master awal (menu bahan baku dan akun admin default).
+• Langkah 6: Jalankan 'npm run build' untuk mengkompilasi kode frontend (jika menggunakan bundler).
+• Langkah 7: Jalankan 'npm start' atau 'pm2 start pm2.config.js' untuk menjalankan server.
+
+
+8. Panduan Instalasi
+8.1 Instalasi Program Siap Eksekusi
+Kebutuhan konfigurasi sistem minimum:
+KomponenMinimumDisarankanOS ServerUbuntu 20.04 LTS / Windows 10Ubuntu 22.04 LTSCPU2 Core4 CoreRAM4GB8GBStorage20GB50GB SSDNode.jsv18.xv20.x (LTS)MySQL8.08.0.35+Browser KlienChrome 110, Firefox 110Chrome 120+
+Langkah instalasi program siap eksekusi:
+• Langkah 1: Pastikan Node.js 18+ dan MySQL 8.0+ terinstal di server.
+• Langkah 2: Ekstrak paket aplikasi ke direktori target (misalnya /var/www/dapur-restock/).
+• Langkah 3: Buat database MySQL bernama 'dapur_restock' dan buat user dengan hak akses penuh ke database tersebut.
+• Langkah 4: Salin file .env.example menjadi .env dan isi semua variabel konfigurasi.
+• Langkah 5: Jalankan 'npm install --production' untuk menginstal dependensi production.
+• Langkah 6: Jalankan 'npm run db:migrate && npm run db:seed' untuk inisialisasi database.
+• Langkah 7: Konfigurasi web server (Apache/Nginx) sebagai reverse proxy ke port aplikasi (default: 3000).
+• Langkah 8: Jalankan aplikasi menggunakan PM2: 'pm2 start pm2.config.js && pm2 save'.
+• Langkah 9: Akses aplikasi melalui browser di URL server. Login menggunakan akun default admin: username 'admin', password 'admin123' (segera ganti setelah instalasi pertama).
+
+8.2 Instalasi Kode Program Sumber
+Untuk instalasi dari kode sumber (development mode):
+• Langkah 1: Pastikan Git, Node.js 18+, dan MySQL 8.0+ terinstal.
+• Langkah 2: Clone repository: 'git clone <URL_REPOSITORY>'.
+• Langkah 3: Masuk ke direktori: 'cd dapur-restock'.
+• Langkah 4: Instal semua dependensi: 'npm install'.
+• Langkah 5: Buat database dan jalankan migrasi: 'npm run db:migrate && npm run db:seed'.
+• Langkah 6: Jalankan server development: 'npm run dev'.
+• Langkah 7: Untuk menjalankan unit test: 'npm test'.
+
+
+9. Penutup
+Dokumen Deskripsi Pengembangan Perangkat Lunak (DPPL) Sistem Informasi Dapur dan Restock Warung Nasi Bakar ini merupakan panduan teknis komprehensif yang disusun sebagai kelengkapan Tugas Besar Mata Kuliah Rekayasa Perangkat Lunak. Dokumen ini menggabungkan seluruh hasil analisis dan desain yang telah dilakukan sebelumnya, termasuk Business Requirements Document (BRD) dan Tugas Besar Desain Terstruktur.
+Sistem Informasi Dapur dan Restock yang dirancang dalam dokumen ini ditujukan untuk menyelesaikan permasalahan operasional nyata yang dihadapi Warung Nasi Bakar, yaitu ketidakefisienan pengelolaan stok bahan baku secara manual, kesulitan pemantauan kedaluwarsa bahan, alur pesanan yang rawan error, dan ketiadaan laporan operasional yang terstruktur. Dengan penerapan sistem digital ini, diharapkan:
+• Seluruh proses pencatatan stok, pengecekan kedaluwarsa, dan restock dapat dilakukan dengan lebih akurat dan konsisten.
+• Integrasi alur pesanan dari kasir ke dapur melalui antrian digital dapat mengeliminasi kesalahan pesanan verbal.
+• Pengurangan stok bahan secara otomatis setelah produksi selesai dapat menjaga akurasi data stok secara real-time.
+• Laporan stok, produksi, dan restock yang tersedia di dashboard dapat memudahkan pemilik dalam mengambil keputusan operasional berbasis data.
+Dokumen ini akan diperbarui seiring dengan perkembangan implementasi sistem. Catatan revisi dapat dilihat pada bagian Daftar Perubahan di awal dokumen.
+
+Bandung, Juni 2026
+
+Tim Pengembang
+Al Fanisa Basri | Feby Mutiara | Ratu Sinatria Ragib
+Program Studi D4 Teknik Informatika
+Universitas Logistik dan Bisnis Internasional
+xv
+
+15
+

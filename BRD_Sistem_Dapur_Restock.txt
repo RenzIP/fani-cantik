@@ -1,0 +1,181 @@
+﻿BUSINESS REQUIREMENTS DOCUMENT
+Sistem Informasi Dapur dan Restock Warung Nasi Bakar
+
+
+
+Disusun untuk memenuhi salah satu tugas Mata Kuliah
+Praktikum Rekayasa Perangkat Lunak
+Dosen Pengampu: Dini Hamidin, S.Si., MBA., MT.
+
+
+
+Disusun Oleh:
+Al Fanisa Basri
+Feby Mutiara
+Ratu Sinatria Ragib
+
+
+
+
+
+SCHOOL OF INFORMATION TECHNOLOGY
+UNIVERSITAS LOGISTIK DAN BISNIS INTERNASIONAL
+2026
+
+1. Document Revisions
+
+DateVersionDocument Changes2026-06-151.0Initial Draft - BRD Sistem Informasi Dapur dan Restock Warung Nasi Bakar
+2. Approvals
+
+RoleNameTitleSignatureDateProject SponsorBusiness OwnerProject ManagerSystem ArchitectDevelopment LeadUser Experience LeadQuality Lead
+
+DAFTAR ISI
+1. Document Revisions	i
+2. Approvals	i
+3. Introduction	1
+3.1 Project Summary	1
+3.1.1 Objectives	1
+3.1.2 Background	1
+3.2 Project Scope	1
+3.2.1 In Scope Functionality	1
+3.2.2 Out of Scope Functionality	1
+3.3 System Perspective	1
+3.4 Stakeholders	1
+3.4.1 Assumptions	1
+3.4.2 Constraints	1
+3.4.3 Risks	1
+4. Business Process Overview	1
+4.1 Current Business Process (As-Is)	1
+4.2 Proposed Business Process (To-Be)	1
+4.3 Impact of Proposed Changes on Business Services and Processes	1
+5. Business Requirements	1
+5.1 Functional Requirements	1
+5.2 Non-Functional Requirements	1
+5.3 Business Rules	1
+5.4 Reporting Requirement	1
+6. Appendices	1
+6.1 List of Acronyms	1
+6.2 Glossary of Terms	1
+6.3 Data Dictionary	1
+
+
+
+
+3. Introduction
+3.1 Project Summary
+3.1.1 Objectives
+Proyek ini bertujuan untuk mengembangkan Sistem Informasi Dapur dan Restock berbasis digital guna menggantikan proses manual pada Warung Nasi Bakar. Sistem yang akan dibangun diharapkan dapat:
+• Mendigitalisasi pencatatan stok bahan baku, pengecekan kedaluwarsa, dan proses restock secara terintegrasi.
+• Mengintegrasikan alur pesanan dari kasir ke dapur melalui antrian pesanan digital secara real-time.
+• Menyediakan laporan stok, produksi, dan restock yang dapat diakses oleh admin atau pemilik melalui dashboard.
+• Mengurangi risiko kesalahan operasional akibat proses manual dan meningkatkan efisiensi kerja dapur.
+• Menyelaraskan sistem informasi dengan kebutuhan operasional warung yang berkembang secara berkelanjutan.
+
+3.1.2 Background
+Warung Nasi Bakar adalah usaha kuliner skala kecil-menengah yang beroperasi melayani pesanan makan siang dan sore secara langsung, dengan kapasitas rata-rata 50-150 porsi per hari. Seluruh proses operasional pada bagian dapur dan restock saat ini masih dilakukan secara manual dan berdasarkan kebiasaan kerja harian.
+Berdasarkan hasil analisis menggunakan Fishbone Diagram, teridentifikasi sejumlah permasalahan operasional, yaitu: (1) pengecekan stok bahan masih dilakukan secara visual sehingga berisiko terjadi kehabisan stok pada jam sibuk; (2) pengecekan kedaluwarsa belum tercatat secara sistematis sehingga bahan kedaluwarsa berisiko terlewat; (3) SOP produksi dapur belum terdokumentasi secara tertulis sehingga proses bergantung pada kebiasaan petugas; (4) alur pesanan dari kasir ke dapur masih dilakukan secara verbal atau catatan tulis tangan sehingga rawan salah pesanan; dan (5) laporan stok dan restock belum tersedia secara sistematis sehingga pemilik sulit memantau kebutuhan bahan.
+Berdasarkan permasalahan tersebut, proyek pengembangan Sistem Informasi Dapur dan Restock ini diinisiasi untuk meningkatkan efisiensi operasional, akurasi data stok, dan kualitas layanan pada Warung Nasi Bakar.
+
+3.2 Project Scope
+3.2.1 In Scope Functionality
+• Pencatatan dan monitoring stok bahan baku secara digital.
+• Peringatan otomatis untuk stok di bawah batas minimum.
+• Peringatan otomatis untuk bahan yang mendekati tanggal kedaluwarsa.
+• Input dan penerusan pesanan dari kasir ke antrian dapur secara digital.
+• Pengelolaan status produksi pesanan oleh dapur (menunggu, diproses, selesai).
+• Pengurangan stok bahan otomatis setelah produksi dicatat selesai.
+• Pencatatan restock bahan baku oleh dapur.
+• Laporan stok bahan, produksi harian, dan restock yang dapat diakses oleh admin.
+• Manajemen data bahan baku (tambah, ubah, hapus) oleh admin.
+• Autentikasi pengguna dengan hak akses berbeda untuk kasir, dapur, dan admin.
+
+3.2.2 Out of Scope Functionality
+• Integrasi dengan platform pemesanan online (GoFood, ShopeeFood, GrabFood).
+• Fitur pemesanan mandiri oleh pelanggan (self-ordering).
+• Fitur akuntansi lanjutan (neraca, laporan laba rugi).
+• Integrasi dengan sistem perpajakan atau e-faktur.
+• Aplikasi mobile untuk pelanggan.
+• Manajemen data supplier secara otomatis.
+
+3.3 System Perspective
+Sistem Informasi Dapur dan Restock Warung Nasi Bakar adalah aplikasi berbasis web sederhana yang beroperasi secara lokal atau dengan koneksi internet minimal. Sistem ini menggantikan seluruh proses manual pencatatan stok, alur pesanan, dan laporan operasional dengan alur digital terstruktur, dan dirancang dengan mempertimbangkan keterbatasan berikut:
+• Keterbatasan Teknis: Sistem harus berjalan pada perangkat dengan spesifikasi standar (RAM minimal 2GB) menggunakan browser modern tanpa instalasi khusus yang kompleks.
+• Keterbatasan Anggaran: Pengembangan disesuaikan dengan skala UMKM; tidak menggunakan infrastruktur cloud premium.
+• Keterbatasan Integrasi: Pada rilis pertama, sistem berdiri sendiri tanpa integrasi ke platform pemesanan online atau sistem perpajakan eksternal.
+
+3.4 Stakeholders
+
+No.StakeholdersKeterangan1Admin / PemilikPengambil keputusan bisnis; memiliki akses penuh ke laporan stok, restock, dan produksi harian.2KasirMenginput pesanan pelanggan ke sistem dan meneruskan ke dapur; melihat status pesanan.3DapurMenerima pesanan dari sistem, memproses produksi, mencatat stok dan restock bahan baku.4SupplierPihak yang menyediakan dan mengirimkan bahan baku sesuai permintaan restock dari admin.
+3.4.1 Assumptions
+
+No.Asumsi1Sistem digunakan pada lingkungan warung dengan koneksi internet minimal.2Petugas dapur dan kasir memiliki kemampuan dasar mengoperasikan perangkat digital.3Setiap bahan baku yang masuk telah dilengkapi informasi tanggal kedaluwarsa.4Admin/Pemilik bertanggung jawab atas pengelolaan data bahan baku awal di sistem.5Data pengujian mengacu pada operasional harian warung dengan kisaran 50-150 porsi per hari.
+3.4.2 Constraints
+
+No.Constraints1Sistem harus dapat berjalan pada perangkat standar (RAM minimal 2GB, browser modern).2Anggaran pengembangan disesuaikan dengan skala UMKM warung nasi bakar.3Pengembangan harus selesai dalam satu semester akademik.4Pada rilis pertama, sistem berdiri sendiri tanpa integrasi ke platform pemesanan online.5Tidak ada fitur akuntansi lanjutan seperti laporan laba rugi atau integrasi e-faktur.
+3.4.3 Risks
+• Keterbatasan sumber daya pengembang (mahasiswa D4) dapat mempengaruhi cakupan fitur yang dapat diselesaikan dalam satu semester, sehingga diperlukan prioritisasi fitur secara ketat.
+• Resistensi pengguna (kasir dan petugas dapur) terhadap perubahan sistem dari manual ke digital dapat memperlambat adopsi; diperlukan sesi pelatihan yang memadai.
+• Gangguan daya listrik atau perangkat keras dapat menghentikan operasional sementara; perlu prosedur fallback manual yang terdokumentasi.
+• Ketidakpastian spesifikasi kebutuhan dari pemilik warung dapat menyebabkan perubahan requirement di tengah pengembangan (scope creep).
+
+
+4. Business Process Overview
+4.1 Current Business Process (As-Is)
+Proses bisnis dapur dan restock Warung Nasi Bakar yang sedang berjalan seluruhnya berbasis manual. Alur proses yang terjadi adalah sebagai berikut:
+• Kasir menerima pesanan pelanggan dan mencatatnya secara manual, kemudian menyampaikan pesanan ke dapur secara verbal atau menggunakan catatan tulis tangan.
+• Dapur mempersiapkan bahan baku berdasarkan pesanan yang masuk tanpa menggunakan sistem pencatatan digital.
+• Pengecekan stok bahan dilakukan secara visual oleh petugas dapur tanpa ada catatan resmi mengenai jumlah stok yang tersisa.
+• Pengecekan kedaluwarsa dilakukan secara visual langsung pada kemasan bahan, tanpa pencatatan sistematis.
+• Permintaan restock disampaikan oleh dapur kepada admin secara verbal atau melalui catatan informal.
+• Admin atau pemilik memantau kondisi operasional secara manual tanpa adanya laporan yang terotomasi.
+
+Permasalahan utama pada sistem As-Is: stok rawan habis tanpa peringatan, bahan kedaluwarsa berisiko terlewat, alur pesanan rawan salah, SOP tidak terdokumentasi, dan laporan operasional tidak tersedia secara sistematis.
+
+4.2 Proposed Business Process (To-Be)
+Sistem baru menggunakan aplikasi berbasis web untuk pengelolaan dapur dan restock secara digital. Alur proses yang diusulkan adalah sebagai berikut:
+• Admin memasukkan data bahan baku ke sistem, termasuk jumlah stok, stok minimum, dan tanggal kedaluwarsa.
+• Sistem memantau stok secara otomatis dan memberikan peringatan jika stok berada di bawah batas minimum atau bahan mendekati kedaluwarsa.
+• Kasir memasukkan pesanan pelanggan ke dalam sistem secara digital, dan sistem meneruskan pesanan ke antrian dapur secara real-time.
+• Dapur memproses pesanan sesuai urutan antrian, memperbarui status pesanan menjadi diproses lalu selesai.
+• Sistem mengurangi stok bahan secara otomatis setelah produksi pesanan dicatat selesai.
+• Dapur mencatat restock bahan melalui form restock di sistem jika terdapat penambahan stok.
+• Admin atau pemilik dapat mengakses laporan stok, restock, dan produksi melalui dashboard kapan saja.
+
+Proses To-Be mengeliminasi pencatatan manual dan ketidakpastian operasional melalui digitalisasi end-to-end, pemantauan stok otomatis, antrian pesanan digital, serta otomatisasi laporan operasional.
+
+4.3 Impact of Proposed Changes on Business Services and Processes
+
+Proses As-IsProses To-BeUnit TerdampakDampakPengecekan stok bahan secara manual setiap hariPencatatan dan monitoring stok otomatis melalui sistemDapur, AdminEliminasi risiko kehabisan bahan, efisiensi waktu pengecekanPengecekan kedaluwarsa dilakukan secara visual pada kemasanSistem memberikan peringatan otomatis jika bahan mendekati kedaluwarsaDapurMengurangi risiko penggunaan bahan kedaluwarsaPesanan dari kasir ke dapur disampaikan secara verbal atau catatan tulis tanganPesanan masuk ke sistem secara digital dan tampil di antrian dapurKasir, DapurEliminasi salah pesanan, mempercepat alur kerjaSOP produksi tidak terdokumentasi; bergantung pada kebiasaan petugasSistem mendukung alur kerja terstruktur; status produksi dicatat secara digitalDapurStandarisasi proses produksi, mengurangi ketergantungan pada individuLaporan stok dan restock belum tersedia secara sistematisLaporan stok, restock, dan produksi tersedia otomatis di dashboard adminAdmin/PemilikPengambilan keputusan bisnis berbasis data
+
+5. Business Requirements
+Persyaratan dalam dokumen ini diprioritaskan sebagai berikut:
+
+NilaiRatingDeskripsi1CriticalPersyaratan ini sangat penting untuk keberhasilan proyek. Proyek tidak akan dapat berjalan tanpa persyaratan ini.2HighPersyaratan ini berprioritas tinggi, namun proyek dapat berjalan secara minimal tanpa persyaratan ini.3MediumPersyaratan ini memberikan nilai tambah yang cukup penting, namun proyek dapat dilanjutkan tanpanya.4LowPersyaratan prioritas rendah atau nice-to-have; dapat diimplementasikan jika waktu dan sumber daya memungkinkan.5FuturePersyaratan di luar cakupan proyek ini; dipertimbangkan untuk rilis di masa mendatang.
+5.1 Functional Requirements
+
+Req IDKategoriNamaDeskripsiPrioritasOwnerProsesFR-001Stok BahanPencatatan Bahan BakuAdmin dapat memasukkan data bahan baku mencakup nama bahan, kategori, jumlah stok, satuan, stok minimum, tanggal masuk, dan tanggal kedaluwarsa.1 - CriticalAdminTo-Be 3.0FR-002Stok BahanMonitoring Stok OtomatisSistem menampilkan informasi stok bahan secara real-time beserta status bahan (aman, hampir habis, kedaluwarsa).1 - CriticalDapur, AdminTo-Be 3.0FR-003NotifikasiPeringatan Stok MinimumSistem memberikan peringatan otomatis jika jumlah stok bahan berada di bawah batas minimum yang ditetapkan.1 - CriticalSistemBR-001FR-004NotifikasiPeringatan KedaluwarsaSistem memberikan peringatan otomatis jika bahan mendekati tanggal kedaluwarsa.1 - CriticalSistemBR-002FR-005PesananInput Pesanan DigitalKasir dapat memasukkan pesanan pelanggan melalui form sistem, mencakup menu, topping, level pedas, dan jumlah pesanan.1 - CriticalKasirTo-Be 1.0FR-006PesananPenerusan Pesanan ke DapurSistem meneruskan pesanan yang masuk ke antrian dapur secara otomatis setelah data pesanan lengkap.1 - CriticalSistemTo-Be 1.0FR-007ProduksiKelola Status ProduksiDapur dapat memperbarui status pesanan menjadi menunggu, diproses, atau selesai melalui form produksi.1 - CriticalDapurTo-Be 2.0FR-008ProduksiPengurangan Stok OtomatisSistem mengurangi jumlah stok bahan baku secara otomatis setelah proses produksi dicatat selesai.2 - HighSistemBR-003FR-009RestockPencatatan Restock BahanDapur dapat mencatat penambahan stok bahan baku mencakup nama bahan, jumlah tambah, satuan, tanggal restock, dan keterangan.1 - CriticalDapurTo-Be 4.0FR-010LaporanLaporan Stok BahanSistem menghasilkan laporan stok bahan yang menampilkan nama bahan, jumlah stok, satuan, stok minimum, status, dan tanggal kedaluwarsa.1 - CriticalAdmin/PemilikTo-Be 5.0FR-011LaporanLaporan Produksi HarianSistem menghasilkan laporan produksi harian mencakup tanggal, nomor pesanan, menu, jumlah, status, dan waktu selesai.2 - HighAdmin/PemilikTo-Be 5.0FR-012LaporanLaporan RestockSistem menghasilkan laporan restock yang memuat tanggal, nama bahan, jumlah tambah, satuan, dan keterangan.2 - HighAdmin/PemilikTo-Be 5.0FR-013AksesAutentikasi PenggunaSistem menyediakan fitur login dengan username dan password untuk kasir, dapur, dan admin dengan hak akses berbeda.1 - CriticalSemua AktorNFR-003
+5.2 Non-Functional Requirements
+
+Req IDKategoriNamaDeskripsiPrioritasLinking ProcessNFR-001PerformanceResponse TimeSistem harus merespons aksi pengguna (input pesanan, konfirmasi produksi, pencarian stok) dalam waktu maksimal 3 detik.1 - CriticalFR-005, FR-007NFR-002AvailabilityUptime SistemSistem tersedia minimal 99% selama jam operasional warung.1 - CriticalBR-001NFR-003SecurityAutentikasi & OtorisasiAkses sistem menggunakan username dan password; peran kasir, dapur, dan admin memiliki hak akses yang berbeda.1 - CriticalFR-013NFR-004UsabilityKemudahan PenggunaanKasir dan petugas dapur baru harus dapat mengoperasikan fitur inti setelah pelatihan maksimal 2 jam.2 - HighFR-005, FR-007NFR-005Data IntegrityKonsistensi DataData stok, pesanan, produksi, dan restock harus konsisten; tidak ada duplikasi atau kehilangan data saat terjadi gangguan.1 - CriticalFR-001, FR-009NFR-006ScalabilityKapasitas OperasionalSistem harus mampu menangani minimal 150 pesanan dan 50 transaksi restock per hari tanpa penurunan performa.2 - HighFR-001-FR-012NFR-007CompatibilityKompatibilitas PerangkatSistem harus berjalan pada perangkat PC atau tablet dengan spesifikasi standar (RAM 2GB, browser modern).3 - Medium-
+5.3 Business Rules
+
+Kode BRNama Business RuleDeskripsiObjek TerlibatProses StepsLinking Req.BR-001Validasi Stok MinimumSistem memberikan peringatan jika stok bahan berada di bawah batas minimum yang ditetapkan per jenis bahan.Sistem, Admin, DapurTo-Be 3.0FR-003BR-002Validasi KedaluwarsaSistem memberikan peringatan jika bahan mendekati atau telah melewati tanggal kedaluwarsa.Sistem, DapurTo-Be 3.0FR-004BR-003Pengurangan Stok ProduksiStok bahan dikurangi secara otomatis oleh sistem setelah status produksi pesanan diubah menjadi selesai.Sistem, DapurTo-Be 2.0FR-008BR-004Validasi Kelengkapan PesananPesanan hanya dapat diteruskan ke dapur jika seluruh data pesanan (menu, topping, level pedas, jumlah) telah diisi dengan lengkap.Sistem, KasirTo-Be 1.0FR-005, FR-006BR-005Urutan Antrian PesananPesanan diproses oleh dapur berdasarkan urutan masuk (FIFO - First In First Out).Sistem, DapurTo-Be 1.0-2.0FR-006, FR-007BR-006Kelengkapan Data BahanSetiap bahan baku yang dicatat wajib memiliki nama, jumlah stok, satuan, stok minimum, tanggal masuk, dan tanggal kedaluwarsa.Admin, SistemTo-Be 3.0FR-001BR-007Laporan Berdasarkan PeriodeAdmin dapat memilih periode waktu untuk menampilkan laporan stok, restock, dan produksi sesuai kebutuhan.Admin, SistemTo-Be 5.0FR-010-FR-012
+5.4 Reporting Requirement
+
+Report IDNama LaporanDeskripsiPenerimaMetode GenerasiFrekuensiR-001Laporan Stok BahanMenampilkan nama bahan, jumlah stok, satuan, stok minimum, status bahan (aman/hampir habis/kedaluwarsa), dan tanggal kedaluwarsa.Dapur, Admin/PemilikManual & OtomatisKapan SajaR-002Laporan Produksi HarianRekap produksi harian mencakup tanggal, nomor pesanan, menu, jumlah, status, dan waktu selesai.Admin/Pemilik, DapurOtomatis & ManualHarianR-003Laporan RestockMencatat semua aktivitas penambahan stok bahan mencakup tanggal restock, nama bahan, jumlah tambah, satuan, dan keterangan.Dapur, Admin/PemilikOn-DemandKapan Saja
+
+6. Appendices
+6.1 List of Acronyms
+
+AkronimKepanjanganBRDBusiness Requirements DocumentDFDData Flow DiagramSIASistem Informasi AkademikSOPStandard Operating ProcedureUMKMUsaha Mikro, Kecil, dan MenengahUIUser InterfaceDBDatabaseFRFunctional RequirementNFRNon-Functional RequirementBRBusiness RuleFIFOFirst In First Out
+6.2 Glossary of Terms
+
+TermDefinisiAs-Is SystemSistem yang sedang berjalan saat ini sebelum dilakukan perubahan atau pengembangan.To-Be SystemSistem baru yang dirancang dan diusulkan untuk menggantikan atau meningkatkan sistem lama.Stok MinimumBatas jumlah stok bahan baku terendah yang ditetapkan; jika stok berada di bawah nilai ini, sistem memberikan peringatan restock.RestockProses penambahan atau pengisian ulang stok bahan baku ke dalam sistem.DashboardAntarmuka visual yang menyajikan ringkasan data operasional secara terpusat dan mudah dibaca.Business RulesAturan-aturan bisnis yang mendefinisikan atau membatasi cara kerja proses bisnis dalam sistem.KedaluwarsaKondisi bahan baku yang telah melewati batas tanggal layak pakai sehingga tidak boleh digunakan untuk produksi.FIFOMetode pengelolaan antrian pesanan di mana pesanan yang masuk pertama akan diproses terlebih dahulu.Status BahanKondisi bahan baku dalam sistem, terdiri dari: Aman, Hampir Habis, dan Kedaluwarsa.Status PesananKondisi pesanan dalam sistem, terdiri dari: Menunggu, Diproses, dan Selesai.
+6.3 Data Dictionary
+Kamus data berikut mendokumentasikan elemen data utama yang digunakan dalam Sistem Informasi Dapur dan Restock Warung Nasi Bakar:
+
+Nama DataFieldTipe DataUkuranKeteranganData Bahan BakuData Bahan Bakuid_bahanINT11Kode unik bahan baku, auto-incrementnama_bahanVARCHAR100Nama bahan bakukategoriVARCHAR50Jenis atau kategori bahanstokINT10Jumlah stok tersediasatuanVARCHAR20Satuan bahan (kg, gram, pcs, liter, dll.)stok_minimumINT10Batas minimum stok yang memicu peringatantanggal_masukDATE-Tanggal bahan baku masuk ke gudangtanggal_kedaluwarsaDATE-Tanggal bahan baku tidak layak pakaistatus_bahanVARCHAR20Aman / Hampir Habis / KedaluwarsaData PesananData Pesananid_pesananINT11Kode unik pesanan, auto-incrementtanggal_pesananDATETIME-Waktu pesanan dibuatnama_pelangganVARCHAR100Nama pelanggan (opsional)menuVARCHAR100Nama menu nasi bakar yang dipesantoppingVARCHAR100Pilihan topping pesananlevel_pedasVARCHAR20Level kepedasan pesananjumlahINT5Jumlah porsi yang dipesanstatus_pesananVARCHAR20Menunggu / Diproses / SelesaiData ProduksiData Produksiid_produksiINT11Kode unik produksi, auto-incrementid_pesananINT11Relasi ke data pesananwaktu_mulaiDATETIME-Waktu produksi dimulaiwaktu_selesaiDATETIME-Waktu produksi selesaipetugas_dapurVARCHAR100Nama petugas dapur yang memprosesstatus_produksiVARCHAR20Diproses / SelesaiData RestockData Restockid_restockINT11Kode unik restock, auto-incrementid_bahanINT11Relasi ke data bahan bakutanggal_restockDATE-Tanggal restock dilakukanjumlah_tambahINT10Jumlah bahan yang ditambahkansatuanVARCHAR20Satuan bahanketeranganTEXT-Catatan tambahan restock
+i
+
+1
+

@@ -38,7 +38,15 @@ include __DIR__ . '/../../includes/header.php';
                         <td><?= e($row['nama_menu']); ?></td>
                         <td><?= rupiah($row['harga']); ?></td>
                         <td><?= e($row['deskripsi']); ?></td>
-                        <td><?= e($row['gambar'] ?: '-'); ?></td>
+                        <td>
+                            <?php if (!empty($row['gambar']) && file_exists(__DIR__ . '/../../assets/images/' . $row['gambar'])): ?>
+                                <img src="../../assets/images/<?= e($row['gambar']); ?>" alt="Gambar Menu" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+                            <?php else: ?>
+                                <div style="width: 50px; height: 50px; background: #e9f5ec; color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 8px; font-size: 0.9rem;">
+                                    <?= e(substr($row['nama_menu'], 0, 2)); ?>
+                                </div>
+                            <?php endif; ?>
+                        </td>
                         <?php if (role_can_access(['dapur'])): ?>
                             <td class="actions">
                                 <a class="btn-small" href="form.php?id=<?= (int) $row['id']; ?>">Edit</a>
