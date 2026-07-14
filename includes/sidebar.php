@@ -1,12 +1,12 @@
 <?php
 $currentPath = str_replace('\\', '/', $_SERVER['PHP_SELF']);
 $role = current_role();
-$pesananBaruDapur = 0;
+$sidebarNotifPesananBaru = 0;
 
 if (isset($conn) && role_can_access(['dapur'])) {
     $notifResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM pesanan WHERE status IN ('baru', 'menunggu')");
     $notifRow = $notifResult ? mysqli_fetch_assoc($notifResult) : null;
-    $pesananBaruDapur = (int) ($notifRow['total'] ?? 0);
+    $sidebarNotifPesananBaru = (int) ($notifRow['total'] ?? 0);
 }
 
 function nav_active(string $needle, string $currentPath): string
@@ -38,8 +38,8 @@ function nav_allowed(array $roles): bool
         <?php if (nav_allowed(['dapur'])): ?>
             <a class="<?= nav_active('/dashboard/dapur/', $currentPath); ?>" href="<?= e($basePath); ?>dashboard/dapur/index.php">
                 <span>Pesanan Dapur</span>
-                <?php if ($pesananBaruDapur > 0): ?>
-                    <span class="nav-badge"><?= $pesananBaruDapur; ?></span>
+                <?php if ($sidebarNotifPesananBaru > 0): ?>
+                    <span class="nav-badge"><?= $sidebarNotifPesananBaru; ?></span>
                 <?php endif; ?>
             </a>
         <?php endif; ?>
