@@ -220,6 +220,10 @@ select {
     color: var(--danger);
 }
 
+.stat-card.success strong {
+    color: var(--primary);
+}
+
 .panel {
     padding: 24px;
     margin-bottom: 24px;
@@ -782,4 +786,31 @@ td small {
     .admin-chip {
         align-items: flex-start;
     }
+}
+
+.tabs-toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+.tab-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.tab-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
 }

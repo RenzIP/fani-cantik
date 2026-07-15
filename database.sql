@@ -32,6 +32,7 @@ CREATE TABLE bahan_baku (
     stok_minimum DECIMAL(10,2) NOT NULL DEFAULT 10,
     satuan VARCHAR(30) NOT NULL,
     harga DECIMAL(12,2) NOT NULL DEFAULT 0,
+    jenis ENUM('mentah', 'jadi') NOT NULL DEFAULT 'mentah',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -55,6 +56,7 @@ CREATE TABLE stok_masuk (
     bahan_id INT NOT NULL,
     supplier_id INT NOT NULL,
     jumlah DECIMAL(10,2) NOT NULL,
+    harga_beli DECIMAL(12,2) NOT NULL DEFAULT 0,
     tanggal DATE NOT NULL,
     keterangan TEXT NOT NULL,
     CONSTRAINT fk_masuk_bahan FOREIGN KEY (bahan_id) REFERENCES bahan_baku(id) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -88,6 +90,7 @@ CREATE TABLE pesanan (
     total DECIMAL(12,2) NOT NULL DEFAULT 0,
     metode_bayar ENUM('tunai', 'qris', 'transfer') NOT NULL DEFAULT 'tunai',
     status ENUM('menunggu', 'diproses', 'selesai', 'batal') NOT NULL DEFAULT 'menunggu',
+    status_pembayaran ENUM('belum_bayar', 'lunas') NOT NULL DEFAULT 'belum_bayar',
     catatan TEXT NULL,
     user_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

@@ -89,6 +89,7 @@ include __DIR__ . '/../../includes/header.php';
                     <th>Item</th>
                     <th>Total</th>
                     <th>Status</th>
+                    <th>Pembayaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -101,6 +102,7 @@ include __DIR__ . '/../../includes/header.php';
                         <td><?= e($row['item_pesanan'] ?: '-'); ?></td>
                         <td><?= rupiah($row['total']); ?></td>
                         <td><span class="badge <?= $row['status'] === 'batal' ? 'danger' : ''; ?>"><?= e(status_pesanan_label($row['status'])); ?></span></td>
+                        <td><span class="badge <?= $row['status_pembayaran'] === 'belum_bayar' ? 'danger' : ''; ?>"><?= $row['status_pembayaran'] === 'lunas' ? 'Lunas' : 'Belum Bayar'; ?></span></td>
                         <td class="actions">
                             <a class="btn-small" href="../kasir/form.php?id=<?= (int) $row['id']; ?>">Edit</a>
                             <a class="btn-small danger" href="../kasir/hapus.php?id=<?= (int) $row['id']; ?>" data-confirm="Hapus transaksi ini?">Hapus</a>
@@ -108,7 +110,7 @@ include __DIR__ . '/../../includes/header.php';
                     </tr>
                 <?php endforeach; ?>
                 <?php if (!$rows): ?>
-                    <tr><td colspan="7" class="empty">Belum ada transaksi.</td></tr>
+                    <tr><td colspan="8" class="empty">Belum ada transaksi.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

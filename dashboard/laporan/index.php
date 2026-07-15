@@ -10,7 +10,7 @@ $role = current_role();
 $stokMenipis = mysqli_fetch_all(mysqli_query($conn, 'SELECT nama_bahan, stok, stok_minimum, satuan FROM bahan_baku WHERE stok <= stok_minimum ORDER BY stok ASC'), MYSQLI_ASSOC);
 $masuk = mysqli_fetch_all(mysqli_query($conn, 'SELECT sm.tanggal, b.nama_bahan, sm.jumlah, b.satuan FROM stok_masuk sm JOIN bahan_baku b ON b.id = sm.bahan_id ORDER BY sm.tanggal DESC LIMIT 10'), MYSQLI_ASSOC);
 $keluar = mysqli_fetch_all(mysqli_query($conn, 'SELECT sk.tanggal, b.nama_bahan, sk.jumlah, b.satuan, sk.keterangan FROM stok_keluar sk JOIN bahan_baku b ON b.id = sk.bahan_id ORDER BY sk.tanggal DESC LIMIT 10'), MYSQLI_ASSOC);
-$transaksi = mysqli_fetch_all(mysqli_query($conn, "SELECT kode_pesanan, nama_pelanggan, total, metode_bayar, status, created_at FROM pesanan ORDER BY created_at DESC LIMIT 15"), MYSQLI_ASSOC);
+$transaksi = mysqli_fetch_all(mysqli_query($conn, "SELECT kode_pesanan, nama_pelanggan, total, metode_bayar, status, status_pembayaran, created_at FROM pesanan ORDER BY created_at DESC LIMIT 15"), MYSQLI_ASSOC);
 $pendapatan = mysqli_fetch_assoc(mysqli_query($conn, 'SELECT COALESCE(SUM(total), 0) AS total FROM pesanan'));
 
 include __DIR__ . '/../../includes/header.php';
@@ -44,7 +44,7 @@ include __DIR__ . '/../../includes/header.php';
     </div>
     <div class="table-wrap">
         <table>
-            <thead><tr><th>Tanggal</th><th>Kode</th><th>Pelanggan</th><th>Bayar</th><th>Total</th><th>Status</th></tr></thead>
+            <thead><tr><th>Tanggal</th><th>Kode</th><th>Pelanggan</th><th>Bayar</th><th>Total</th><th>Status</th><th>Pembayaran</th></tr></thead>
             <tbody>
                 <?php foreach ($transaksi as $row): ?>
                     <tr>
@@ -54,9 +54,10 @@ include __DIR__ . '/../../includes/header.php';
                         <td><?= e(strtoupper($row['metode_bayar'])); ?></td>
                         <td><?= rupiah($row['total']); ?></td>
                         <td><span class="badge <?= $row['status'] === 'batal' ? 'danger' : ''; ?>"><?= e(status_pesanan_label($row['status'])); ?></span></td>
+                        <td><span class="badge <?= $row['status_pembayaran'] === 'belum_bayar' ? 'danger' : ''; ?>"><?= $row['status_pembayaran'] === 'lunas' ? 'Lunas' : 'Belum Bayar'; ?></span></td>
                     </tr>
                 <?php endforeach; ?>
-                <?php if (!$transaksi): ?><tr><td colspan="6" class="empty">Belum ada transaksi.</td></tr><?php endif; ?>
+                <?php if (!$transaksi): ?><tr><td colspan="7" class="empty">Belum ada transaksi.</td></tr><?php endif; ?>
             </tbody>
         </table>
     </div>

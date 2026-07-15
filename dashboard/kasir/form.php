@@ -65,6 +65,14 @@ include __DIR__ . '/../../includes/header.php';
                 </select>
                 <small class="error-message"></small>
             </div>
+            <div class="form-group">
+                <label for="status_pembayaran">Status Pembayaran</label>
+                <select id="status_pembayaran" name="status_pembayaran" required>
+                    <option value="belum_bayar" <?= $pesanan['status_pembayaran'] === 'belum_bayar' ? 'selected' : ''; ?>>Belum Bayar</option>
+                    <option value="lunas" <?= $pesanan['status_pembayaran'] === 'lunas' ? 'selected' : ''; ?>>Lunas</option>
+                </select>
+                <small class="error-message"></small>
+            </div>
         </div>
 
         <div class="menu-order-list">

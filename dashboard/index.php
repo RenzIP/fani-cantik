@@ -17,6 +17,10 @@ $pesananBaruDapur = db_count($conn, 'pesanan', "status IN ('baru', 'menunggu')")
 $pesananDiproses = db_count($conn, 'pesanan', "status = 'diproses'");
 $pendapatanHariIni = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(total), 0) AS total FROM pesanan WHERE DATE(created_at) = CURDATE()"));
 
+$pendapatanBulanIni = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(total), 0) AS total FROM pesanan WHERE status = 'selesai' AND MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())"));
+$pengeluaranBulanIni = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(jumlah * harga_beli), 0) AS total FROM stok_masuk WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE())"));
+$untungRugiBulanIni = (float) $pendapatanBulanIni['total'] - (float) $pengeluaranBulanIni['total'];
+
 $latest = mysqli_query($conn, 'SELECT nama_bahan, stok, satuan, harga, created_at FROM bahan_baku ORDER BY created_at DESC LIMIT 8');
 $stokTerbaru = $latest ? mysqli_fetch_all($latest, MYSQLI_ASSOC) : [];
 
@@ -39,6 +43,18 @@ include __DIR__ . '/../includes/header.php';
         <article class="stat-card danger">
             <span>Pesanan Baru</span>
             <strong><?= $pesananBaruDapur; ?></strong>
+        </article>
+        <article class="stat-card">
+            <span>Pendapatan Bulan Ini</span>
+            <strong><?= rupiah($pendapatanBulanIni['total'] ?? 0); ?></strong>
+        </article>
+        <article class="stat-card">
+            <span>Pengeluaran Bulan Ini</span>
+            <strong><?= rupiah($pengeluaranBulanIni['total'] ?? 0); ?></strong>
+        </article>
+        <article class="stat-card <?= $untungRugiBulanIni >= 0 ? 'success' : 'danger'; ?>">
+            <span>Untung / Rugi Bersih</span>
+            <strong><?= $untungRugiBulanIni >= 0 ? '+' : ''; ?><?= rupiah($untungRugiBulanIni); ?></strong>
         </article>
     <?php elseif ($role === 'dapur'): ?>
         <article class="stat-card danger">
@@ -73,6 +89,18 @@ include __DIR__ . '/../includes/header.php';
         <article class="stat-card danger">
             <span>Stok Menipis</span>
             <strong><?= $stokMenipis; ?></strong>
+        </article>
+        <article class="stat-card">
+            <span>Pendapatan Bulan Ini</span>
+            <strong><?= rupiah($pendapatanBulanIni['total'] ?? 0); ?></strong>
+        </article>
+        <article class="stat-card">
+            <span>Pengeluaran Bulan Ini</span>
+            <strong><?= rupiah($pengeluaranBulanIni['total'] ?? 0); ?></strong>
+        </article>
+        <article class="stat-card <?= $untungRugiBulanIni >= 0 ? 'success' : 'danger'; ?>">
+            <span>Untung / Rugi Bersih</span>
+            <strong><?= $untungRugiBulanIni >= 0 ? '+' : ''; ?><?= rupiah($untungRugiBulanIni); ?></strong>
         </article>
     <?php endif; ?>
 </section>

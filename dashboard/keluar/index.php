@@ -5,6 +5,10 @@ require_role(['dapur']);
 
 $pageTitle = 'Stok Keluar';
 $basePath = '../../';
+
+// Automatically delete history older than 1 week
+mysqli_query($conn, "DELETE FROM stok_keluar WHERE tanggal < DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
+
 $sql = 'SELECT sk.*, b.nama_bahan, b.satuan
         FROM stok_keluar sk
         JOIN bahan_baku b ON b.id = sk.bahan_id

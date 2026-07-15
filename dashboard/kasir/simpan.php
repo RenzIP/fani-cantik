@@ -10,16 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $namaPelanggan = trim($_POST['nama_pelanggan'] ?? '');
 $metodeBayar = $_POST['metode_bayar'] ?? 'tunai';
 $status = $_POST['status'] ?? 'baru';
+$statusPembayaran = $_POST['status_pembayaran'] ?? 'belum_bayar';
 $catatan = trim($_POST['catatan'] ?? '');
 $qtyInput = $_POST['qty'] ?? [];
 $allowedPayment = ['tunai', 'qris', 'transfer'];
 $allowedStatus = ['baru', 'menunggu', 'diproses', 'selesai', 'batal'];
+$allowedStatusPembayaran = ['belum_bayar', 'lunas'];
 $items = [];
 $total = 0.0;
 $id = (int) ($_POST['id'] ?? 0);
 
-if ($namaPelanggan === '' || !in_array($metodeBayar, $allowedPayment, true) || !in_array($status, $allowedStatus, true)) {
-    set_flash('danger', 'Mohon isi data pelanggan dan metode bayar dengan benar.');
+if ($namaPelanggan === '' || !in_array($metodeBayar, $allowedPayment, true) || !in_array($status, $allowedStatus, true) || !in_array($statusPembayaran, $allowedStatusPembayaran, true)) {
+    set_flash('danger', 'Mohon isi data pelanggan, metode bayar, dan status pembayaran dengan benar.');
     redirect($id > 0 ? 'form.php?id=' . $id : 'index.php');
 }
 
@@ -70,8 +72,8 @@ try {
             redirect('index.php');
         }
 
-        $stmt = mysqli_prepare($conn, 'UPDATE pesanan SET nama_pelanggan = ?, total = ?, metode_bayar = ?, status = ?, catatan = ?, user_id = ? WHERE id = ?');
-        mysqli_stmt_bind_param($stmt, 'sdsssii', $namaPelanggan, $total, $metodeBayar, $status, $catatan, $userId, $id);
+        $stmt = mysqli_prepare($conn, 'UPDATE pesanan SET nama_pelanggan = ?, total = ?, metode_bayar = ?, status = ?, status_pembayaran = ?, catatan = ?, user_id = ? WHERE id = ?');
+        mysqli_stmt_bind_param($stmt, 'sdssssii', $namaPelanggan, $total, $metodeBayar, $status, $statusPembayaran, $catatan, $userId, $id);
         mysqli_stmt_execute($stmt);
 
         $delete = mysqli_prepare($conn, 'DELETE FROM pesanan_detail WHERE pesanan_id = ?');
@@ -81,8 +83,8 @@ try {
     } else {
         $kodePesanan = 'NB-' . date('Ymd-His');
         $status = $status === 'baru' ? 'menunggu' : $status;
-        $stmt = mysqli_prepare($conn, 'INSERT INTO pesanan (kode_pesanan, nama_pelanggan, total, metode_bayar, status, catatan, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        mysqli_stmt_bind_param($stmt, 'ssdsssi', $kodePesanan, $namaPelanggan, $total, $metodeBayar, $status, $catatan, $userId);
+        $stmt = mysqli_prepare($conn, 'INSERT INTO pesanan (kode_pesanan, nama_pelanggan, total, metode_bayar, status, status_pembayaran, catatan, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        mysqli_stmt_bind_param($stmt, 'ssdssssi', $kodePesanan, $namaPelanggan, $total, $metodeBayar, $status, $statusPembayaran, $catatan, $userId);
         mysqli_stmt_execute($stmt);
         $pesananId = mysqli_insert_id($conn);
     }

@@ -56,6 +56,14 @@ include __DIR__ . '/../../includes/header.php';
                 <input id="harga" type="number" min="0" name="harga" value="<?= e((string) $data['harga']); ?>" required>
                 <small class="error-message"></small>
             </div>
+            <div class="form-group">
+                <label for="jenis">Jenis Bahan</label>
+                <select id="jenis" name="jenis" required>
+                    <option value="mentah" <?= ($data['jenis'] ?? 'mentah') === 'mentah' ? 'selected' : ''; ?>>Bahan Mentah (Bahan Baku)</option>
+                    <option value="jadi" <?= ($data['jenis'] ?? 'mentah') === 'jadi' ? 'selected' : ''; ?>>Produk Jadi (Makanan/Minuman)</option>
+                </select>
+                <small class="error-message"></small>
+            </div>
         </div>
         <div class="form-actions">
             <a class="btn btn-secondary" href="index.php">Batal</a>

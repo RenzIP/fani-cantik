@@ -5,6 +5,10 @@ require_role(['gudang']);
 
 $pageTitle = 'Stok Masuk';
 $basePath = '../../';
+
+// Automatically delete history older than 1 week
+mysqli_query($conn, "DELETE FROM stok_masuk WHERE tanggal < DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
+
 $sql = 'SELECT sm.*, b.nama_bahan, b.satuan, s.nama_supplier
         FROM stok_masuk sm
         JOIN bahan_baku b ON b.id = sm.bahan_id
@@ -30,6 +34,8 @@ include __DIR__ . '/../../includes/header.php';
                     <th>Bahan</th>
                     <th>Supplier</th>
                     <th>Jumlah</th>
+                    <th>Harga Beli / Unit</th>
+                    <th>Total Biaya</th>
                     <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
@@ -41,12 +47,14 @@ include __DIR__ . '/../../includes/header.php';
                         <td><?= e($row['nama_bahan']); ?></td>
                         <td><?= e($row['nama_supplier']); ?></td>
                         <td><?= e((string) $row['jumlah']); ?> <?= e($row['satuan']); ?></td>
+                        <td><?= rupiah($row['harga_beli']); ?></td>
+                        <td><?= rupiah((float) $row['jumlah'] * (float) $row['harga_beli']); ?></td>
                         <td><?= e($row['keterangan'] ?? '-'); ?></td>
                         <td><a class="btn-small danger" href="hapus.php?id=<?= (int) $row['id']; ?>" data-confirm="Hapus transaksi masuk ini? Stok akan dikurangi kembali.">Hapus</a></td>
                     </tr>
                 <?php endforeach; ?>
                 <?php if (!$rows): ?>
-                    <tr><td colspan="6" class="empty">Belum ada transaksi stok masuk.</td></tr>
+                    <tr><td colspan="8" class="empty">Belum ada transaksi stok masuk.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

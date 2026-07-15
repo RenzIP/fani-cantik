@@ -10,18 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $bahanId = (int) ($_POST['bahan_id'] ?? 0);
 $supplierId = (int) ($_POST['supplier_id'] ?? 0);
 $jumlah = (float) ($_POST['jumlah'] ?? 0);
+$hargaBeli = (float) ($_POST['harga_beli'] ?? 0);
 $tanggal = $_POST['tanggal'] ?? date('Y-m-d');
 $keterangan = trim($_POST['keterangan'] ?? '');
 
-if ($bahanId <= 0 || $supplierId <= 0 || $jumlah <= 0 || $keterangan === '') {
+if ($bahanId <= 0 || $supplierId <= 0 || $jumlah <= 0 || $hargaBeli < 0 || $keterangan === '') {
     set_flash('danger', 'Mohon isi transaksi stok masuk dengan benar.');
     redirect('form.php');
 }
 
 mysqli_begin_transaction($conn);
 try {
-    $stmt = mysqli_prepare($conn, 'INSERT INTO stok_masuk (bahan_id, supplier_id, jumlah, tanggal, keterangan) VALUES (?, ?, ?, ?, ?)');
-    mysqli_stmt_bind_param($stmt, 'iidss', $bahanId, $supplierId, $jumlah, $tanggal, $keterangan);
+    $stmt = mysqli_prepare($conn, 'INSERT INTO stok_masuk (bahan_id, supplier_id, jumlah, harga_beli, tanggal, keterangan) VALUES (?, ?, ?, ?, ?, ?)');
+    mysqli_stmt_bind_param($stmt, 'iiddss', $bahanId, $supplierId, $jumlah, $hargaBeli, $tanggal, $keterangan);
     mysqli_stmt_execute($stmt);
 
     $update = mysqli_prepare($conn, 'UPDATE bahan_baku SET stok = stok + ? WHERE id = ?');

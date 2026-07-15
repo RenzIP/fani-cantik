@@ -49,6 +49,11 @@ include __DIR__ . '/../../includes/header.php';
                 <input id="tanggal" type="date" name="tanggal" value="<?= date('Y-m-d'); ?>" required>
                 <small class="error-message"></small>
             </div>
+            <div class="form-group">
+                <label for="harga_beli">Harga Beli per Unit (Rp)</label>
+                <input id="harga_beli" type="number" min="0" name="harga_beli" placeholder="Contoh: 15000" required>
+                <small class="error-message"></small>
+            </div>
             <div class="form-group full">
                 <label for="keterangan">Keterangan</label>
                 <textarea id="keterangan" name="keterangan" rows="4" required placeholder="Contoh: restok dari supplier mingguan"></textarea>
