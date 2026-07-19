@@ -6,13 +6,15 @@ require_role(['admin']);
 $pageTitle = 'Form Menu';
 $basePath = '../../';
 $id = (int) ($_GET['id'] ?? 0);
-$data = ['nama_menu' => '', 'harga' => '', 'deskripsi' => '', 'gambar' => ''];
+$data = ['nama_menu' => '', 'harga' => '', 'deskripsi' => '', 'gambar' => '', 'produk_jadi_id' => ''];
 
 if ($id > 0) {
     $stmt = mysqli_prepare($conn, 'SELECT * FROM menu_nasi_bakar WHERE id = ?');
     mysqli_stmt_bind_param($stmt, 'i', $id);
     $data = fetch_one_stmt($stmt) ?: $data;
 }
+
+$produkJadi = mysqli_fetch_all(mysqli_query($conn, "SELECT id, nama_bahan, stok, satuan FROM bahan_baku WHERE jenis = 'jadi' ORDER BY nama_bahan ASC"), MYSQLI_ASSOC);
 
 include __DIR__ . '/../../includes/header.php';
 ?>
@@ -36,6 +38,18 @@ include __DIR__ . '/../../includes/header.php';
                 <label for="harga">Harga</label>
                 <input id="harga" type="number" min="0" name="harga" value="<?= e((string) $data['harga']); ?>" required>
                 <small class="error-message"></small>
+            </div>
+            <div class="form-group">
+                <label for="produk_jadi_id">Stok Produk Jadi</label>
+                <select id="produk_jadi_id" name="produk_jadi_id">
+                    <option value="">Belum dihubungkan ke stok</option>
+                    <?php foreach ($produkJadi as $produk): ?>
+                        <option value="<?= (int) $produk['id']; ?>" <?= (int) ($data['produk_jadi_id'] ?? 0) === (int) $produk['id'] ? 'selected' : ''; ?>>
+                            <?= e($produk['nama_bahan']); ?> (<?= e((string) $produk['stok']); ?> <?= e($produk['satuan']); ?>)
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <small>Hubungkan menu ke produk jadi agar stok otomatis berkurang saat terjual.</small>
             </div>
             <div class="form-group full">
                 <label for="deskripsi">Deskripsi</label>

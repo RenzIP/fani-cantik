@@ -42,6 +42,7 @@ function nav_allowed(array $roles): bool
                     <span class="nav-badge"><?= $sidebarNotifPesananBaru; ?></span>
                 <?php endif; ?>
             </a>
+            <a class="<?= nav_active('/dashboard/produksi/', $currentPath); ?>" href="<?= e($basePath); ?>dashboard/produksi/index.php">Produksi Dapur</a>
         <?php endif; ?>
         <?php if (nav_allowed(['dapur', 'gudang'])): ?>
             <a class="<?= nav_active('/dashboard/bahan/', $currentPath); ?>" href="<?= e($basePath); ?>dashboard/bahan/index.php"><?= nav_allowed(['gudang']) && !nav_allowed(['dapur']) ? 'Data Bahan Baku' : 'Bahan Baku'; ?></a>

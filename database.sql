@@ -5,6 +5,8 @@ CREATE DATABASE IF NOT EXISTS inventaris_nasi_bakar
 USE inventaris_nasi_bakar;
 
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS produksi_detail;
+DROP TABLE IF EXISTS produksi;
 DROP TABLE IF EXISTS pesanan_detail;
 DROP TABLE IF EXISTS pesanan;
 DROP TABLE IF EXISTS permintaan_restok;
@@ -41,7 +43,9 @@ CREATE TABLE menu_nasi_bakar (
     nama_menu VARCHAR(120) NOT NULL,
     harga DECIMAL(12,2) NOT NULL DEFAULT 0,
     deskripsi TEXT NOT NULL,
-    gambar VARCHAR(180) DEFAULT NULL
+    gambar VARCHAR(180) DEFAULT NULL,
+    produk_jadi_id INT NULL,
+    CONSTRAINT fk_menu_produk_jadi FOREIGN KEY (produk_jadi_id) REFERENCES bahan_baku(id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE supplier (
@@ -83,6 +87,28 @@ CREATE TABLE permintaan_restok (
     CONSTRAINT fk_permintaan_bahan FOREIGN KEY (bahan_id) REFERENCES bahan_baku(id) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
+CREATE TABLE produksi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kode_produksi VARCHAR(40) NOT NULL UNIQUE,
+    produk_id INT NOT NULL,
+    jumlah_hasil DECIMAL(10,2) NOT NULL,
+    tanggal DATE NOT NULL,
+    keterangan TEXT NULL,
+    user_id INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_produksi_produk FOREIGN KEY (produk_id) REFERENCES bahan_baku(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_produksi_user FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE produksi_detail (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produksi_id INT NOT NULL,
+    bahan_id INT NOT NULL,
+    jumlah_pakai DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_produksi_detail_header FOREIGN KEY (produksi_id) REFERENCES produksi(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_produksi_detail_bahan FOREIGN KEY (bahan_id) REFERENCES bahan_baku(id) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
 CREATE TABLE pesanan (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kode_pesanan VARCHAR(40) NOT NULL UNIQUE,
@@ -114,24 +140,29 @@ INSERT INTO users (nama, email, password, role) VALUES
 ('Dapur Nasi Bakar', 'dapur@nasibakar.test', '$2y$10$28r6t3P6RP2pZI6sLJBmBOIoL2mfaDbaE.47qxMFVX1A2ckLzI7qe', 'dapur'),
 ('Gudang Nasi Bakar', 'gudang@nasibakar.test', '$2y$10$28r6t3P6RP2pZI6sLJBmBOIoL2mfaDbaE.47qxMFVX1A2ckLzI7qe', 'gudang');
 
-INSERT INTO bahan_baku (nama_bahan, stok, stok_minimum, satuan, harga) VALUES
-('Beras Pulen', 55.00, 15.00, 'kg', 14500),
-('Ayam Suwir', 18.00, 8.00, 'kg', 42000),
-('Cumi Asin', 9.00, 5.00, 'kg', 78000),
-('Teri Medan', 7.50, 5.00, 'kg', 68000),
-('Daun Pisang', 160.00, 50.00, 'lembar', 750),
-('Kemangi', 12.00, 6.00, 'ikat', 3500),
-('Cabai Merah', 14.00, 7.00, 'kg', 36000),
-('Bawang Merah', 11.00, 6.00, 'kg', 32000),
-('Bawang Putih', 8.00, 5.00, 'kg', 30000),
-('Minyak Goreng', 22.00, 8.00, 'liter', 17500);
+INSERT INTO bahan_baku (nama_bahan, stok, stok_minimum, satuan, harga, jenis) VALUES
+('Beras Pulen', 55.00, 15.00, 'kg', 14500, 'mentah'),
+('Ayam Suwir', 18.00, 8.00, 'kg', 42000, 'mentah'),
+('Cumi Asin', 9.00, 5.00, 'kg', 78000, 'mentah'),
+('Teri Medan', 7.50, 5.00, 'kg', 68000, 'mentah'),
+('Daun Pisang', 160.00, 50.00, 'lembar', 750, 'mentah'),
+('Kemangi', 12.00, 6.00, 'ikat', 3500, 'mentah'),
+('Cabai Merah', 14.00, 7.00, 'kg', 36000, 'mentah'),
+('Bawang Merah', 11.00, 6.00, 'kg', 32000, 'mentah'),
+('Bawang Putih', 8.00, 5.00, 'kg', 30000, 'mentah'),
+('Minyak Goreng', 22.00, 8.00, 'liter', 17500, 'mentah'),
+('Nasi Bakar Ayam Suwir', 0.00, 5.00, 'porsi', 0, 'jadi'),
+('Nasi Bakar Cumi', 0.00, 5.00, 'porsi', 0, 'jadi'),
+('Nasi Bakar Teri Kemangi', 0.00, 5.00, 'porsi', 0, 'jadi'),
+('Nasi Bakar Tuna', 0.00, 5.00, 'porsi', 0, 'jadi'),
+('Nasi Bakar Jamur', 0.00, 5.00, 'porsi', 0, 'jadi');
 
-INSERT INTO menu_nasi_bakar (nama_menu, harga, deskripsi, gambar) VALUES
-('Nasi Bakar Ayam Suwir', 18000, 'Nasi gurih berisi ayam suwir pedas, kemangi, dan sambal khas.', 'nasi-bakar-ayam.jpg'),
-('Nasi Bakar Cumi', 22000, 'Nasi bakar dengan cumi asin pedas dan aroma daun pisang.', 'nasi-bakar-cumi.jpg'),
-('Nasi Bakar Teri Kemangi', 17000, 'Teri medan gurih, kemangi segar, dan bumbu pedas harum.', 'nasi-bakar-teri.jpg'),
-('Nasi Bakar Tuna', 21000, 'Isian tuna berbumbu kuning pedas dengan nasi gurih.', 'nasi-bakar-tuna.jpg'),
-('Nasi Bakar Jamur', 16000, 'Pilihan tanpa daging dengan jamur berbumbu dan kemangi.', 'nasi-bakar-jamur.jpg');
+INSERT INTO menu_nasi_bakar (nama_menu, harga, deskripsi, gambar, produk_jadi_id) VALUES
+('Nasi Bakar Ayam Suwir', 18000, 'Nasi gurih berisi ayam suwir pedas, kemangi, dan sambal khas.', 'nasi-bakar-ayam.jpg', 11),
+('Nasi Bakar Cumi', 22000, 'Nasi bakar dengan cumi asin pedas dan aroma daun pisang.', 'nasi-bakar-cumi.jpg', 12),
+('Nasi Bakar Teri Kemangi', 17000, 'Teri medan gurih, kemangi segar, dan bumbu pedas harum.', 'nasi-bakar-teri.jpg', 13),
+('Nasi Bakar Tuna', 21000, 'Isian tuna berbumbu kuning pedas dengan nasi gurih.', 'nasi-bakar-tuna.jpg', 14),
+('Nasi Bakar Jamur', 16000, 'Pilihan tanpa daging dengan jamur berbumbu dan kemangi.', 'nasi-bakar-jamur.jpg', 15);
 
 INSERT INTO supplier (nama_supplier, no_telp, alamat) VALUES
 ('CV Pangan Segar', '0812-4400-1100', 'Jl. Pasar Induk No. 12'),

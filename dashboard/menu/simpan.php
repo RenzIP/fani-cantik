@@ -11,6 +11,7 @@ $id = (int) ($_POST['id'] ?? 0);
 $nama = trim($_POST['nama_menu'] ?? '');
 $harga = (float) ($_POST['harga'] ?? 0);
 $deskripsi = trim($_POST['deskripsi'] ?? '');
+$produkJadiId = (int) ($_POST['produk_jadi_id'] ?? 0);
 $existingGambar = trim($_POST['existing_gambar'] ?? '');
 $gambar = $existingGambar;
 
@@ -60,14 +61,25 @@ if ($nama === '' || $deskripsi === '' || $harga < 0) {
     redirect($id ? 'form.php?id=' . $id : 'form.php');
 }
 
+if ($produkJadiId > 0) {
+    $checkProduk = mysqli_prepare($conn, "SELECT id FROM bahan_baku WHERE id = ? AND jenis = 'jadi'");
+    mysqli_stmt_bind_param($checkProduk, 'i', $produkJadiId);
+    if (!fetch_one_stmt($checkProduk)) {
+        set_flash('danger', 'Pilih data produk jadi yang valid.');
+        redirect($id ? 'form.php?id=' . $id : 'form.php');
+    }
+}
+
+$produkJadiId = $produkJadiId > 0 ? $produkJadiId : null;
+
 if ($id > 0) {
-    $stmt = mysqli_prepare($conn, 'UPDATE menu_nasi_bakar SET nama_menu = ?, harga = ?, deskripsi = ?, gambar = ? WHERE id = ?');
-    mysqli_stmt_bind_param($stmt, 'sdssi', $nama, $harga, $deskripsi, $gambar, $id);
+    $stmt = mysqli_prepare($conn, 'UPDATE menu_nasi_bakar SET nama_menu = ?, harga = ?, deskripsi = ?, gambar = ?, produk_jadi_id = ? WHERE id = ?');
+    mysqli_stmt_bind_param($stmt, 'sdssii', $nama, $harga, $deskripsi, $gambar, $produkJadiId, $id);
     mysqli_stmt_execute($stmt);
     set_flash('success', 'Menu berhasil diperbarui.');
 } else {
-    $stmt = mysqli_prepare($conn, 'INSERT INTO menu_nasi_bakar (nama_menu, harga, deskripsi, gambar) VALUES (?, ?, ?, ?)');
-    mysqli_stmt_bind_param($stmt, 'sdss', $nama, $harga, $deskripsi, $gambar);
+    $stmt = mysqli_prepare($conn, 'INSERT INTO menu_nasi_bakar (nama_menu, harga, deskripsi, gambar, produk_jadi_id) VALUES (?, ?, ?, ?, ?)');
+    mysqli_stmt_bind_param($stmt, 'sdssi', $nama, $harga, $deskripsi, $gambar, $produkJadiId);
     mysqli_stmt_execute($stmt);
     set_flash('success', 'Menu berhasil ditambahkan.');
 }

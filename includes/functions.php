@@ -152,3 +152,60 @@ function paginate(int $page, int $limit, int $total): array
         'total_pages' => $totalPages,
     ];
 }
+
+function adjust_finished_product_stock(mysqli $conn, array $items, int $direction): void
+{
+    if (!in_array($direction, [-1, 1], true)) {
+        throw new InvalidArgumentException('Arah penyesuaian stok tidak valid.');
+    }
+
+    $menuStmt = mysqli_prepare($conn, "SELECT m.produk_jadi_id, b.nama_bahan, b.stok, b.jenis
+        FROM menu_nasi_bakar m
+        LEFT JOIN bahan_baku b ON b.id = m.produk_jadi_id
+        WHERE m.id = ? FOR UPDATE");
+    $updateStmt = mysqli_prepare($conn, 'UPDATE bahan_baku SET stok = stok + ? WHERE id = ?');
+
+    if (!$menuStmt || !$updateStmt) {
+        throw new RuntimeException('Struktur stok produk jadi belum tersedia. Jalankan migrasi database produksi terlebih dahulu.');
+    }
+
+    foreach ($items as $item) {
+        $menuId = (int) ($item['menu_id'] ?? 0);
+        $qty = (float) ($item['qty'] ?? 0);
+        if ($menuId <= 0 || $qty <= 0) {
+            continue;
+        }
+
+        mysqli_stmt_bind_param($menuStmt, 'i', $menuId);
+        $product = fetch_one_stmt($menuStmt);
+
+        // Menu tanpa produk jadi tetap dapat dijual untuk menjaga kompatibilitas data lama.
+        if (!$product || empty($product['produk_jadi_id'])) {
+            continue;
+        }
+
+        if ($product['jenis'] !== 'jadi') {
+            throw new RuntimeException('Produk jadi untuk menu tidak valid.');
+        }
+
+        if ($direction < 0 && (float) $product['stok'] < $qty) {
+            throw new RuntimeException('Stok produk jadi ' . $product['nama_bahan'] . ' tidak mencukupi.');
+        }
+
+        $delta = $qty * $direction;
+        $productId = (int) $product['produk_jadi_id'];
+        mysqli_stmt_bind_param($updateStmt, 'di', $delta, $productId);
+        mysqli_stmt_execute($updateStmt);
+    }
+}
+
+function get_order_stock_items(mysqli $conn, int $pesananId): array
+{
+    $stmt = mysqli_prepare($conn, 'SELECT menu_id, qty FROM pesanan_detail WHERE pesanan_id = ?');
+    if (!$stmt) {
+        throw new RuntimeException('Detail pesanan tidak dapat dibaca.');
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $pesananId);
+    return fetch_all_stmt($stmt);
+}

@@ -125,6 +125,10 @@ include __DIR__ . '/../includes/header.php';
                 <strong>Dapur</strong>
                 <span><?= $pesananBaruDapur; ?> pesanan baru menunggu dibuat.</span>
             </a>
+            <a class="quick-card" href="produksi/index.php">
+                <strong>Produksi Dapur</strong>
+                <span>Ubah bahan mentah menjadi stok produk jadi.</span>
+            </a>
         <?php endif; ?>
         <?php if (role_can_access(['gudang'])): ?>
             <a class="quick-card" href="masuk/index.php">

@@ -62,7 +62,7 @@ try {
     $userId = (int) $_SESSION['user_id'];
 
     if ($id > 0) {
-        $check = mysqli_prepare($conn, 'SELECT id FROM pesanan WHERE id = ?');
+        $check = mysqli_prepare($conn, 'SELECT id, status FROM pesanan WHERE id = ? FOR UPDATE');
         mysqli_stmt_bind_param($check, 'i', $id);
         $existing = fetch_one_stmt($check);
 
@@ -70,6 +70,11 @@ try {
             mysqli_rollback($conn);
             set_flash('danger', 'Pesanan tidak ditemukan.');
             redirect('index.php');
+        }
+
+        // Kembalikan stok produk jadi dari detail lama sebelum pesanan diperbarui.
+        if ($existing['status'] !== 'batal') {
+            adjust_finished_product_stock($conn, get_order_stock_items($conn, $id), 1);
         }
 
         $stmt = mysqli_prepare($conn, 'UPDATE pesanan SET nama_pelanggan = ?, total = ?, metode_bayar = ?, status = ?, status_pembayaran = ?, catatan = ?, user_id = ? WHERE id = ?');
@@ -87,6 +92,11 @@ try {
         mysqli_stmt_bind_param($stmt, 'ssdssssi', $kodePesanan, $namaPelanggan, $total, $metodeBayar, $status, $statusPembayaran, $catatan, $userId);
         mysqli_stmt_execute($stmt);
         $pesananId = mysqli_insert_id($conn);
+    }
+
+    // Pesanan aktif mengurangi stok produk jadi yang dipetakan pada menu.
+    if ($status !== 'batal') {
+        adjust_finished_product_stock($conn, $items, -1);
     }
 
     $detail = mysqli_prepare($conn, 'INSERT INTO pesanan_detail (pesanan_id, menu_id, qty, harga, subtotal) VALUES (?, ?, ?, ?, ?)');
