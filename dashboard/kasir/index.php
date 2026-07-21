@@ -6,7 +6,10 @@ require_role(['kasir']);
 $pageTitle = 'Kasir & Pemesanan';
 $basePath = '../../';
 
-$menus = mysqli_fetch_all(mysqli_query($conn, 'SELECT id, nama_menu, harga FROM menu_nasi_bakar ORDER BY nama_menu ASC'), MYSQLI_ASSOC);
+$menus = mysqli_fetch_all(mysqli_query($conn, "SELECT m.id, m.nama_menu, m.harga, m.produk_jadi_id, b.stok AS stok_produk_jadi
+    FROM menu_nasi_bakar m
+    LEFT JOIN bahan_baku b ON b.id = m.produk_jadi_id
+    ORDER BY m.nama_menu ASC"), MYSQLI_ASSOC);
 $pesanan = mysqli_fetch_all(mysqli_query($conn, "SELECT p.*, COUNT(pd.id) AS total_item FROM pesanan p LEFT JOIN pesanan_detail pd ON pd.pesanan_id = p.id GROUP BY p.id ORDER BY p.created_at DESC LIMIT 10"), MYSQLI_ASSOC);
 $totalHariIni = db_count($conn, 'pesanan', "DATE(created_at) = CURDATE()");
 $pendapatanHariIni = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(total), 0) AS total FROM pesanan WHERE DATE(created_at) = CURDATE()"));
@@ -69,12 +72,17 @@ include __DIR__ . '/../../includes/header.php';
 
             <div class="menu-order-list">
                 <?php foreach ($menus as $menu): ?>
+                    <?php
+                    $usesFinishedStock = !empty($menu['produk_jadi_id']);
+                    $availableStock = max(0, (int) ($menu['stok_produk_jadi'] ?? 0));
+                    $stockLabel = $usesFinishedStock ? 'Stok siap jual: ' . $availableStock : 'Stok belum dipetakan';
+                    ?>
                     <label class="menu-order-row">
                         <span>
                             <strong><?= e($menu['nama_menu']); ?></strong>
-                            <small><?= rupiah($menu['harga']); ?></small>
+                            <small><?= rupiah($menu['harga']); ?> | <?= e($stockLabel); ?></small>
                         </span>
-                        <input type="number" name="qty[<?= (int) $menu['id']; ?>]" min="0" value="0" aria-label="Jumlah <?= e($menu['nama_menu']); ?>">
+                        <input type="number" name="qty[<?= (int) $menu['id']; ?>]" min="0" value="0" <?= $usesFinishedStock ? 'max="' . $availableStock . '"' : ''; ?> <?= $usesFinishedStock && $availableStock === 0 ? 'disabled' : ''; ?> aria-label="Jumlah <?= e($menu['nama_menu']); ?>">
                     </label>
                 <?php endforeach; ?>
                 <?php if (!$menus): ?>

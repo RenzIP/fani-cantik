@@ -21,7 +21,10 @@ if (!$pesanan) {
     redirect('index.php');
 }
 
-$menus = mysqli_fetch_all(mysqli_query($conn, 'SELECT id, nama_menu, harga FROM menu_nasi_bakar ORDER BY nama_menu ASC'), MYSQLI_ASSOC);
+$menus = mysqli_fetch_all(mysqli_query($conn, "SELECT m.id, m.nama_menu, m.harga, m.produk_jadi_id, b.stok AS stok_produk_jadi
+    FROM menu_nasi_bakar m
+    LEFT JOIN bahan_baku b ON b.id = m.produk_jadi_id
+    ORDER BY m.nama_menu ASC"), MYSQLI_ASSOC);
 $detailRows = mysqli_fetch_all(mysqli_query($conn, 'SELECT menu_id, qty FROM pesanan_detail WHERE pesanan_id = ' . $id), MYSQLI_ASSOC);
 $qtyMap = [];
 
@@ -77,12 +80,18 @@ include __DIR__ . '/../../includes/header.php';
 
         <div class="menu-order-list">
             <?php foreach ($menus as $menu): ?>
+                <?php
+                $currentQty = (int) ($qtyMap[(int) $menu['id']] ?? 0);
+                $usesFinishedStock = !empty($menu['produk_jadi_id']);
+                $availableStock = max(0, (int) ($menu['stok_produk_jadi'] ?? 0)) + $currentQty;
+                $stockLabel = $usesFinishedStock ? 'Stok siap jual: ' . $availableStock : 'Stok belum dipetakan';
+                ?>
                 <label class="menu-order-row">
                     <span>
                         <strong><?= e($menu['nama_menu']); ?></strong>
-                        <small><?= rupiah($menu['harga']); ?></small>
+                        <small><?= rupiah($menu['harga']); ?> | <?= e($stockLabel); ?></small>
                     </span>
-                    <input type="number" name="qty[<?= (int) $menu['id']; ?>]" min="0" value="<?= $qtyMap[(int) $menu['id']] ?? 0; ?>" aria-label="Jumlah <?= e($menu['nama_menu']); ?>">
+                    <input type="number" name="qty[<?= (int) $menu['id']; ?>]" min="0" value="<?= $currentQty; ?>" <?= $usesFinishedStock ? 'max="' . $availableStock . '"' : ''; ?> aria-label="Jumlah <?= e($menu['nama_menu']); ?>">
                 </label>
             <?php endforeach; ?>
         </div>

@@ -109,7 +109,8 @@ try {
     set_flash('success', $id > 0 ? 'Pesanan berhasil diperbarui.' : 'Pesanan berhasil disimpan.');
 } catch (Throwable $error) {
     mysqli_rollback($conn);
-    set_flash('danger', 'Gagal menyimpan pesanan.');
+    error_log('Gagal menyimpan pesanan kasir: ' . $error->getMessage());
+    set_flash('danger', $error->getMessage() ?: 'Gagal menyimpan pesanan.');
 }
 
 redirect('index.php');

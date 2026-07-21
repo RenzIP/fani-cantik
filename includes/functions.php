@@ -189,7 +189,7 @@ function adjust_finished_product_stock(mysqli $conn, array $items, int $directio
         }
 
         if ($direction < 0 && (float) $product['stok'] < $qty) {
-            throw new RuntimeException('Stok produk jadi ' . $product['nama_bahan'] . ' tidak mencukupi.');
+            throw new RuntimeException('Stok siap jual ' . $product['nama_bahan'] . ' tidak mencukupi. Catat produksi dapur terlebih dahulu.');
         }
 
         $delta = $qty * $direction;

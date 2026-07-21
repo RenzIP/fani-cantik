@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+// $host = 'localhost';
+// $user = 'root';
+// $password = '';
+// $database = 'inventaris_nasi_bakar';
+
 $host = 'sao.domcloud.co';
 $user = 'nasi-bakar-rpl';
 $password = 'PxbT_1(5c769uUTgA_';
